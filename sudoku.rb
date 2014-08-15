@@ -1,4 +1,4 @@
-
+class Sudoku
 puzzle = 
     [5,3,4,6,7,8,9,1,2],
     [6,7,2,1,9,5,3,4,8],
@@ -43,6 +43,37 @@ array = []
 
 
 p array ## checks rows
+
+
+
+### add box 1 (top left)
+
+
+
+box1 = []
+box2 = []
+box3 = []
+
+  puzzle.each_with_index do |puz, index|
+
+    total1 = puz[0,3].inject {|x, y| x + y }
+    total2 = puz[3,3].inject {|x, y| x + y }
+    total3 = puz[6,3].inject {|x, y| x + y }
+
+    box1 << total1 if index < 3
+    box2 << total2 if index < 3
+    box3 << total3 if index < 3
+  end
+
+
+p box1.inject {|x,y| x + y}
+p box2.inject {|x,y| x + y}
+p box3.inject {|x,y| x + y}
+
+
+
+
+end
 
 
     
