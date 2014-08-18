@@ -31,7 +31,6 @@ def self.total? array
   array.inject {|x, y| x + y }
 end
 
-#p valid? [5,3,4,6,7,8,9,1,2]
 
 array_of_columns = []
 i = 0
@@ -101,7 +100,7 @@ p array_of_columns
 p array_of_rows
 p total_of_boxes
 
- end   
+end   
 
 
 
