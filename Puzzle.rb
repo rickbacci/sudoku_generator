@@ -4,9 +4,9 @@ class Puzzle
     @puzzle = puzzle
   end
 
-  def self.puzzle_valid?
-    return true if rows_valid
-  end
+  # def self.puzzle_valid?
+  #   return true if rows_valid
+  # end
 
   def rows_valid?
     rows_valid = true
@@ -25,8 +25,8 @@ class Puzzle
       t = 0
       @puzzle.each do |puz|
         t += puz[i]
+        i += 1
       end
-      i += 1
       cols_valid = false if t != 45
     end
     cols_valid
@@ -36,6 +36,11 @@ class Puzzle
     values.inject {|x, y| x + y }
   end
 
+
+
+
+
+
   def boxes_valid?
     boxes_valid = true
 
@@ -43,8 +48,8 @@ class Puzzle
       boxes_valid = false if blah != 45
     end
 
-    def self.add_row_of_boxes
-      valid? @box_left
+    def self.add_row_of_boxes *args
+      p valid? args
       valid? @box_center
       valid? @box_right
       @box_left, @box_center, @box_right = 0, 0, 0
@@ -60,25 +65,11 @@ class Puzzle
        
       if index == 2
 
-        add_row_of_boxes
-
-        # valid? box_left
-        # valid? box_center
-        # valid? box_right
-        #@box_left, @box_center, @box_right = 0, 0, 0
+        add_row_of_boxes @box_left
       elsif index == 5
-        add_row_of_boxes
-        # valid? box_left
-        # valid? box_center
-        # valid? box_right
-        # box_left, box_center, box_right = 0, 0, 0
+        add_row_of_boxes 
       elsif index == 8
         add_row_of_boxes
-
-        # valid? box_left
-        # valid? box_center
-        # valid? box_right
-        # box_left, box_center, box_right = 0, 0, 0
       end
     end
     boxes_valid
@@ -87,9 +78,9 @@ class Puzzle
 end
 
 
-puzzle = [5,3,4,6,7,8,9,1,2],
+puzzle = [5,3,4,6,7,8,9,1,0], # 2 where zero is
          [6,7,2,1,9,5,3,4,8],
-         [9,9,8,3,4,2,5,6,7],
+         [1,9,8,3,4,2,5,6,7],
 
          [8,5,9,7,6,1,4,2,3],
          [4,2,6,8,5,3,7,9,1],
@@ -102,7 +93,7 @@ puzzle = [5,3,4,6,7,8,9,1,2],
 
 x = Puzzle.new puzzle
 
-p x.rows_valid?
-p x.columns_valid?
-p x.boxes_valid?
+ x.rows_valid?
+ x.columns_valid?
+ x.boxes_valid?
 
