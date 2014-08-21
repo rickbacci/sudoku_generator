@@ -17,38 +17,8 @@
 
 #p puzzle.fill(0)
 
-@x = [1,2,3,4,5,6,7,8,9]
-@temp = []
 
 
-def generate_center
-  @x.shuffle!
-  @puzzle[10] = @x[0,3]
-  @puzzle[13] = @x[3,3]
-  @puzzle[16] = @x[6,3]
-end
-
-generate_center
-
-
-def generate_left_and_right_center
-  @temp1, @temp2, @temp3 = [], [], []
-
-  @temp1 = @x.shuffle - @puzzle[10]
-  @temp2 = @x.shuffle - @puzzle[13]
-  @temp3 = @x.shuffle - @puzzle[16]
-
-  @puzzle[9] = (@temp1 & @temp2)
-  @puzzle[11] = @x.shuffle - @puzzle[10] - @puzzle[9]
-
-  @puzzle[12] = (@temp2 & @temp3)
-  @puzzle[14] = @x.shuffle - @puzzle[13] - @puzzle[12]
-  
-  @puzzle[15] = (@temp3 & @temp1)
-  @puzzle[17] = @x.shuffle - @puzzle[16] - @puzzle[15]
-end
-  
-generate_left_and_right_center
 
 def row0
   @row0 = @puzzle[ 0] + @puzzle[ 1] + @puzzle[ 2]
@@ -135,7 +105,7 @@ def col6
   @puzzle[20][0] << @puzzle[23][0] << @puzzle[26][0]
 end
 
-def col8
+def col7
   @col7 = [] << 
   @puzzle[ 2][1] << @puzzle[ 5][1] << @puzzle[ 8][1] << 
   @puzzle[11][1] << @puzzle[14][1] << @puzzle[17][1] << 
@@ -188,9 +158,34 @@ end
 #p test = box4.shuffle
 #p test.each_slice(3).to_a
 
+@x = [1,2,3,4,5,6,7,8,9]
+@temp = []
 
 
+def generate_center
+  @x.shuffle!
+  @puzzle[10] = @x[0,3]
+  @puzzle[13] = @x[3,3]
+  @puzzle[16] = @x[6,3]
+end
 
+def generate_left_and_right_center
+  @temp1, @temp2, @temp3 = [], [], []
+
+  @temp1 = @x.shuffle - @puzzle[10]
+  @temp2 = @x.shuffle - @puzzle[13]
+  @temp3 = @x.shuffle - @puzzle[16]
+
+  @puzzle[9] = (@temp1 & @temp2)
+  @puzzle[11] = @x.shuffle - @puzzle[10] - @puzzle[9]
+
+  @puzzle[12] = (@temp2 & @temp3)
+  @puzzle[14] = @x.shuffle - @puzzle[13] - @puzzle[12]
+  
+  @puzzle[15] = (@temp3 & @temp1)
+  @puzzle[17] = @x.shuffle - @puzzle[16] - @puzzle[15]
+end
+  
 def generate_top_and_bottom_center
   @temp1, @temp2, @temp3 = [], [], []
 
@@ -198,7 +193,7 @@ def generate_top_and_bottom_center
   @temp2 = @x.shuffle - col4
   @temp3 = @x.shuffle - col5
 
-  puts
+  
 
   @temp1a = (@temp1 & @temp2) ## top_center, first column
   @temp2a = (@temp2 & @temp3)
@@ -209,29 +204,24 @@ def generate_top_and_bottom_center
    @puzzle[ 7][0] = (@temp1 & @temp2)[2] #
   
   #@temp1top = [@puzzle[1][0]] << @puzzle[ 4][0] << @puzzle[ 7][0]
-  puts
+
    @puzzle[19][0] = (@temp1 - @temp1a)[0] # bottom_center, first column
    @puzzle[22][0] = (@temp1 - @temp1a)[1] #
    @puzzle[25][0] = (@temp1 - @temp1a)[2] #
-  puts
+
  #@temp1bottom = [@puzzle[19][0]] << @puzzle[22][0] << @puzzle[25][0] ## bottom_center, first column
-puts
 
    @puzzle[ 1][1] = (@temp2 - @temp1a)[0] 
    @puzzle[ 4][1] = (@temp2 - @temp1a)[1] 
    @puzzle[ 7][1] = (@temp2 - @temp1a)[2]
 
-puts
  # @temp2top = [@puzzle[1][1]] << @puzzle[ 4][1] << @puzzle[ 7][1]
-puts
 
 #@temp2bottom = @temp2 - @temp2top
 
    @puzzle[19][1] = (@temp2 - @temp2a)[0] 
    @puzzle[22][1] = (@temp2 - @temp2a)[1]
    @puzzle[25][1] = (@temp2 - @temp2a)[2]
-
-  puts
 
   #p @temp2bottom = [@puzzle[19][1]] << @puzzle[22][1] << @puzzle[25][1]
 
@@ -247,32 +237,126 @@ puts
 
 end
 
-generate_top_and_bottom_center
-puts
-
 def print_puzzle
   p row0, row1, row2, row3, row4, row5, row6, row7, row8
 end
 
-#p box4
-#generate_center
+generate_center
+generate_left_and_right_center
+generate_top_and_bottom_center
+#print_puzzle
+
+
+
+
+puts
+## row 0 box 0
+def box0r1c0 (x = [])
+  @x.shuffle - row0 - col0 - x
+end
+p box0r1c0
+
+def box0r1c1(x = [])
+  @x.shuffle - row0 - col1 - x
+end
+p box0r1c1
+
+def box0r1c2(x = [])
+  @x.shuffle - row0 - col2 - x
+end
+p box0r1c2
+
+def box0r1a
+  box0r1c0 & box0r1c1
+end
+p box0r1a
+
+def box0r1b
+  box0r1c1 & box0r1c2
+end
+p box0r1b
+
+def box0r1c
+  box0r1c2 & box0r1c0
+end
+p box0r1c
+ # p box0r1a.length
+ # p box0r1b.length
+ # p box0r1c.length
+
+#p test
+
+#p test = test.sort_by { |x| x.length }
+
+## row 0 box 2
+  box0r1c6 = @x.shuffle - row0 - col6
+  box0r1c7 = @x.shuffle - row0 - col7
+  box0r1c8 = @x.shuffle - row0 - col8
+
+ box0r1c6a = box0r1c6 & box0r1c7
+ box0r1c7b = box0r1c7 & box0r1c8
+ box0r1c8c = box0r1c8 & box0r1c6
+
+puts
+## row 1 box 0
+ @x.shuffle - row1 - col0
+ @x.shuffle - row1 - col1
+ @x.shuffle - row1 - col2
+## row 1 box 2
+ @x.shuffle - row1 - col6
+ @x.shuffle - row1 - col7
+ @x.shuffle - row1 - col8
+puts
+## row 2 box 0
+ @x.shuffle - row2 - col0
+ @x.shuffle - row2 - col1
+ @x.shuffle - row2 - col2
+## row 2 box 2
+ @x.shuffle - row2 - col6
+ @x.shuffle - row2 - col7
+ @x.shuffle - row2 - col8
+puts
+
+puts 'test'
+ #p test = [box0r1a, box0r1b, box0r1c]
+ def baz
+  [box0r1a, box0r1b, box0r1c]
+ end
+ puts
+ test = baz
+
+l = 1
+3.times do
+   i = 0
+  test.each do |t|
+     
+      if t.length == l
+        @puzzle[0][i] = t[0]
+        box0r1c0 t
+    
+      end
+        
+      i += 1
+  end
+  l += 1
+
+  puts 'test in loop'
+  p baz
+  #p test = [box0r1a, box0r1b, box0r1c]
+end
+
 
 print_puzzle
-#p @puzzle
 
-# array = [0,3,6,9,12,15,18,21,24]
-# total = 0
-# p col0 =  array.each do |num|
-#             total += puzzle[num,0]
-#           end
+# p box0r1c0
+# p box0r1c1
+# p box0r1c2
+
+# p box0r1a
+# p box0r1b
+# p box0r1c
 
 
 
 
-# x = Puzzle.new puzzle
 
-# p x.rows_valid?
-# p x.columns_valid?
-# p x.boxes_valid?
-
-# p x.puzzle_valid?
