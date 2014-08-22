@@ -241,113 +241,294 @@ def print_puzzle
   p row0, row1, row2, row3, row4, row5, row6, row7, row8
 end
 
-generate_center
-generate_left_and_right_center
-generate_top_and_bottom_center
+
 #print_puzzle
-
-
-
 
 puts
 ## row 0 box 0
-def box0r1c0 (x = [])
+def box0r0c0 (x = [])
   @x.shuffle - row0 - col0 - x
 end
-p box0r1c0
+#p box0r1c0
 
-def box0r1c1(x = [])
+def box0r0c1(x = [])
   @x.shuffle - row0 - col1 - x
 end
-p box0r1c1
+#p box0r1c1
 
-def box0r1c2(x = [])
+def box0r0c2(x = [])
   @x.shuffle - row0 - col2 - x
 end
-p box0r1c2
+#p box0r1c2
 
-def box0r1a
-  box0r1c0 & box0r1c1
+# def box0r0a
+#   box0r0c0 & box0r0c1
+# end
+# #p box0r1a
+
+# def box0r0b
+#   box0r0c1 & box0r0c2
+# end
+# #p box0r1b
+
+# def box0r0c
+#   box0r0c2 & box0r0c0
+# end
+
+
+## row 1 box 0
+def box0r1c0
+  @x.shuffle - row1 - col0
 end
-p box0r1a
 
-def box0r1b
-  box0r1c1 & box0r1c2
+def box0r1c1
+  @x.shuffle - row1 - col1
 end
-p box0r1b
 
-def box0r1c
-  box0r1c2 & box0r1c0
+def box0r1c2
+  @x.shuffle - row1 - col2
 end
-p box0r1c
- # p box0r1a.length
- # p box0r1b.length
- # p box0r1c.length
 
-#p test
 
+def box0r2c0
+  @x.shuffle - row2 - col0
+end
+
+def box0r2c1
+  @x.shuffle - row2 - col1
+end
+
+def box0r2c2
+  @x.shuffle - row2 - col2
+end
+
+
+## row 2 box 0
+# def box0r1a
+#   box0r1c0 & box0r1c1
+# end
+
+# def box0r1b
+#   box0r1c1 & box0r1c2
+# end
+
+# def box0r1c
+#   box0r1c2 & box0r1c0
+# end
 #p test = test.sort_by { |x| x.length }
 
 ## row 0 box 2
-  box0r1c6 = @x.shuffle - row0 - col6
-  box0r1c7 = @x.shuffle - row0 - col7
-  box0r1c8 = @x.shuffle - row0 - col8
+# def box0r1c6(x = [])
+#   @x.shuffle - row0 - col6 - x
+# end
 
- box0r1c6a = box0r1c6 & box0r1c7
- box0r1c7b = box0r1c7 & box0r1c8
- box0r1c8c = box0r1c8 & box0r1c6
+# def box0r1c7(x = [])
+#   @x.shuffle - row0 - col7 - x
+# end
 
-puts
-## row 1 box 0
- @x.shuffle - row1 - col0
- @x.shuffle - row1 - col1
- @x.shuffle - row1 - col2
-## row 1 box 2
- @x.shuffle - row1 - col6
- @x.shuffle - row1 - col7
- @x.shuffle - row1 - col8
-puts
-## row 2 box 0
- @x.shuffle - row2 - col0
- @x.shuffle - row2 - col1
- @x.shuffle - row2 - col2
-## row 2 box 2
- @x.shuffle - row2 - col6
- @x.shuffle - row2 - col7
- @x.shuffle - row2 - col8
-puts
+# def box0r1c8(x = [])
+#    @x.shuffle - row0 - col8 - x
+# end
 
-puts 'test'
- #p test = [box0r1a, box0r1b, box0r1c]
+# def box0r1c6a
+#    box0r1c6 & box0r1c7
+# end
+
+# def box0r1c7b
+#   box0r1c7 & box0r1c8
+# end
+
+# def box0r1c8c
+#   box0r1c8 & box0r1c6
+# end
+
+
+
  def baz
-  [box0r1a, box0r1b, box0r1c]
+  puts "left row0 condensed"
+  p [box0r0a, box0r0b, box0r0c]
+  #p [box0r1c0, box0r1c1, box0r1c2]
  end
- puts
- test = baz
 
-l = 1
-3.times do
-   i = 0
-  test.each do |t|
-     
-      if t.length == l
-        @puzzle[0][i] = t[0]
-        box0r1c0 t
-    
-      end
+def lbaz
+  puts "left row1 condensed"
+  p [box0r1a, box0r1b, box0r1c]
+  #p [box0r1c0, box0r1c1, box0r1c2]
+
+end
+
+def box
+  [box0r0c0, box0r0c1, box0r0c2,
+   box0r1c0, box0r1c1, box0r1c2,
+   box0r2c0, box0r2c1, box0r2c2]
+end
+ # def rbaz
+ #  puts "right row condensed"
+ #  p [box0r1c6a, box0r1c7b, box0r1c8c]#.flatten.collect { |x| [x] }#.reject! { |c| c.empty? }
+ #  #p [box0r1c6, box0r1c7, box0r1c8]
+ # end
+ 
+@g= []
+@again = 0
+
+@len0, @len1, @len2, @len3, @len4, @len5, @len6, @len7, @len8 = 0,0,0,0,0,0,0,0,0
+@c1, @c2, @c3, @c4, @c5, @c6, @c7, @c8, @c9 = 0,0,0,0,0,0,0,0,0
+
+@check_vals = []
+# def generator x, y
+#   l = 1
+#   5.times do
+#     i = 0
+#     if x
+#       p x
+#       x.each do |a|
+#         @check_vals << a
+#         #9.times do |val|
+#         #{}"@c" + val = val if a.include? val
         
-      i += 1
-  end
-  l += 1
+#       end
 
-  puts 'test in loop'
-  p baz
-  #p test = [box0r1a, box0r1b, box0r1c]
+#       p@check_vals
+#       x.each do |t|
+#         if t.length == 1
+#           p @puzzle[y][i] = t[0]
+#           @g << t[0]
+#           @again = 1
+#         elsif t.length == 2
+#           if box0.include?(t[0]) || box3.include?(t[0])
+#             p @puzzle[y][i] = t[1]
+#           else
+#             p @puzzle[y][i] = t[0]
+#           end
+#           @again = 2
+#         elsif t.length == 3
+#           if @puzzle[0].include? t[0]
+#             if @puzzle[0].include? t[1]
+#               p @puzzle[y][i] = t[2]
+#             end
+#           else
+#             p @puzzle[y][i] = t[0]
+#           end
+#           @again = 2
+#         else
+#           p @puzzle[y][i] = t[0]
+#           @again = 0 
+#         end
+#         i += 1
+#       end
+#     end
+
+#     l += 1 if @again == 0
+#     l = 1 if @again == 2
+#   end
+# end
+
+generate_center
+generate_left_and_right_center
+generate_top_and_bottom_center
+
+# p generator baz, 0
+#p generator rbaz, 3
+#p generator lbaz, 3
+
+
+def generator box
+  
+@remove = []
+  7.times do
+    v = 1
+    i = 0
+    col = 0
+    row = 0
+    box.each do |b|
+      #v = 1
+      p "this is value b: #{b}"
+      b -= @remove
+      p "this is value b after removing set numbers: #{b}"
+
+
+      p "Beginning --- row:#{row} col:#{col}"
+
+      5.times do
+        p v
+
+        if (box.flatten.count(v) == 1) && (b.include? v)
+          puts 'one remaining'
+          @puzzle[row][col] = v
+          @remove << v
+          #break
+        end
+
+        if v == 9
+          v = 0
+        else
+          v += 1
+        end
+      end
+
+      if b.length == 1
+        if @puzzle[row][col] == 0
+          p (@puzzle[row][col] = b[0])
+          @remove << b[0]
+        end
+      elsif b.length == 2
+        if box0.include?(b[0])
+          if @puzzle[row][col] == 0
+            p (@puzzle[row][col] = b[1])
+            @remove << b[1]
+          end
+        else
+          if @puzzle[row][col] == 0
+            p (@puzzle[row][col] = b[0])
+            @remove << b[0]
+          end
+        end
+      elsif b.length == 3
+        if @puzzle[row][col] == 0
+          p (@puzzle[row][col] = b[0])
+          @remove << b[0]
+        end 
+      elsif b.length == 4
+        if @puzzle[row][col] == 0
+          p (@puzzle[row][col] = b[0])
+          @remove << b[0]
+        end 
+      else 
+        if @puzzle[row][col] == 0
+          p (@puzzle[row][col] = b[0])
+          @remove << b[0]
+        end 
+      end
+
+      if col == 2
+          col = 0
+          if row == 6
+            row = 0
+          else
+            row += 3
+          end
+      else
+          col += 1
+      end
+      p "End --- row:#{row} col:#{col}"
+
+      v += 1
+      i += 1
+    end
+  end
+  0
 end
 
 
-print_puzzle
+p generator box
 
+puts 
+
+print_puzzle
+# puts
+# p @g
+
+#p @puzzle
 # p box0r1c0
 # p box0r1c1
 # p box0r1c2
@@ -357,6 +538,60 @@ print_puzzle
 # p box0r1c
 
 
+#puts
+
+## row 1 box 2
+ @x.shuffle - row1 - col6
+ @x.shuffle - row1 - col7
+ @x.shuffle - row1 - col8
+#puts
+
+## row 2 box 2
+ @x.shuffle - row2 - col6
+ @x.shuffle - row2 - col7
+ @x.shuffle - row2 - col8
+#puts
+
+# p box0
+# p box1
+# p box2
+
+# p row0
+# p row1
+# p row2
+puts
+
+puts
+
+# #p @puzzle
+# puts 'row2'
+# p @puzzle[2][0] = @x - row0 - col6
+
+# p @puzzle[2][1] = @x - row0 - col7
+# p @puzzle[2][2] = @x - row0 - col8
+# puts
+# puts 'row5'
+# p @puzzle[5][0] = @x - row1 - col6
+# p @puzzle[5][1] = @x - row1 - col7
+# p @puzzle[5][2] = @x - row1 - col8
+# puts
+# puts 'row8'
+# p @puzzle[8][0] = @x - row2 - col6
+# p @puzzle[8][1] = @x - row2 - col7
+# p @puzzle[8][2] = @x - row2 - col8
+
+# @check_vals << @puzzle[2][0] << @puzzle[2][1] << @puzzle[2][2] <<
+#                @puzzle[5][0] << @puzzle[5][1] << @puzzle[5][2] <<
+#                @puzzle[8][0] << @puzzle[8][1] << @puzzle[8][2]
+
+# p @check_vals
+# p @check_vals.flatten.include? 1
+# p @check_vals.flatten.count 1
+
+# p box1.include? 1
+# p box1.count 1
 
 
+p box0
+p @box0
 
