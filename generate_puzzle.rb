@@ -280,153 +280,153 @@ end
 
 
 
-generate_center
-generate_left_and_right_center
-generate_top_and_bottom_center
+#generate_center
+#generate_left_and_right_center
+#generate_top_and_bottom_center
 
 
-def generator box
-  p box
+# def generator box
+#   p box
   
-@remove = []
-5.times do
-    #v = 1
-    i = 0
-    col = 0
-    row = 0
-    box.each do |b|
-      v = 1
-      p "this is value b: #{b}"
-      b -= @remove
-      p "b after remove : #{b}"
+# @remove = []
+# 5.times do
+#     #v = 1
+#     i = 0
+#     col = 0
+#     row = 0
+#     box.each do |b|
+#       v = 1
+#       p "this is value b: #{b}"
+#       b -= @remove
+#       p "b after remove : #{b}"
 
 
-      #p "Beginning --- row:#{row} col:#{col}"
-      #p box
-      puts
-      #puts 'flatten and count'
-      p box.flatten - @remove
-      puts
-      9.times do
-        new_box = box.flatten - @remove
-        if (new_box.flatten.count(v) == 1) && (b.include? v)
-          puts 'one remaining'
-          puts v
-          @puzzle[row][col] = v
-          @remove << v
-        end
+#       #p "Beginning --- row:#{row} col:#{col}"
+#       #p box
+#       puts
+#       #puts 'flatten and count'
+#       p box.flatten - @remove
+#       puts
+#       9.times do
+#         new_box = box.flatten - @remove
+#         if (new_box.flatten.count(v) == 1) && (b.include? v)
+#           puts 'one remaining'
+#           puts v
+#           @puzzle[row][col] = v
+#           @remove << v
+#         end
 
-        if v == 9
-          v = 0
-        else
-          v += 1
-        end
-      end
+#         if v == 9
+#           v = 0
+#         else
+#           v += 1
+#         end
+#       end
 
-      if b.length == 1
-        if @puzzle[row][col] == 0
-          puts 'set in 1'
-          p (@puzzle[row][col] = b[0])
-          @remove << b[0]
-        end
-      elsif b.length == 2
-        if box0.include?(b[0])
-          if @puzzle[row][col] == 0
-            puts 'set in first part of 2'
-            p (@puzzle[row][col] = b[1])
-            @remove << b[1]
-          end
-        else
-          if @puzzle[row][col] == 0
-            puts 'set in 2nd part of 2'
-            p (@puzzle[row][col] = b[0])
-            @remove << b[0]
-          end
-        end
-      elsif b.length == 3
-        t = 0
-        if @puzzle[row][col] == 0
-          if box0.include? b[t]
-            t += 1
-            if box0.include? b[t]
-              t += 1
-              puts 'set in 3'
-              p @puzzle[row][col] = b[t]
-              @remove << b[t]
-            else
-              puts 'set in 3'
-              p @puzzle[row][col] = b[t]
-              @remove << b[t]
-            end
-          else
-            puts 'set in 3'
-            p @puzzle[row][col] = b[t]
-            @remove << b[t]
-          end
-        end 
-      elsif b.length == 4
-        t = 0
-        if @puzzle[row][col] == 0
-          if box0.include? b[t]
-            t += 1
-            if box0.include? b[t]
-              t += 1
-              puts 'set in 4'
-              p @puzzle[row][col] = b[t]
-              @remove << b[t]
-            else
-              puts 'set in 4'
-              p @puzzle[row][col] = b[t]
-              @remove << b[t]
-            end
-          else
-            puts 'set in 4'
-            p @puzzle[row][col] = b[t]
-            @remove << b[t]
-          end
-        end 
-      else 
-        t = 0
-        if @puzzle[row][col] == 0
-          if box0.include? b[t]
-            t += 1
-            if box0.include? b[t]
-              t += 1
-              puts 'set in 5'
-              p @puzzle[row][col] = b[t]
-              @remove << b[t]
-            else
-              puts 'set in 5'
-              p @puzzle[row][col] = b[t]
-              @remove << b[t]
-            end
-          else
-            puts 'set in 5'
-            p @puzzle[row][col] = b[t]
-            @remove << b[t]
-          end
-        end 
-      end
+#       if b.length == 1
+#         if @puzzle[row][col] == 0
+#           puts 'set in 1'
+#           p (@puzzle[row][col] = b[0])
+#           @remove << b[0]
+#         end
+#       elsif b.length == 2
+#         if box0.include?(b[0])
+#           if @puzzle[row][col] == 0
+#             puts 'set in first part of 2'
+#             p (@puzzle[row][col] = b[1])
+#             @remove << b[1]
+#           end
+#         else
+#           if @puzzle[row][col] == 0
+#             puts 'set in 2nd part of 2'
+#             p (@puzzle[row][col] = b[0])
+#             @remove << b[0]
+#           end
+#         end
+#       elsif b.length == 3
+#         t = 0
+#         if @puzzle[row][col] == 0
+#           if box0.include? b[t]
+#             t += 1
+#             if box0.include? b[t]
+#               t += 1
+#               puts 'set in 3'
+#               p @puzzle[row][col] = b[t]
+#               @remove << b[t]
+#             else
+#               puts 'set in 3'
+#               p @puzzle[row][col] = b[t]
+#               @remove << b[t]
+#             end
+#           else
+#             puts 'set in 3'
+#             p @puzzle[row][col] = b[t]
+#             @remove << b[t]
+#           end
+#         end 
+#       elsif b.length == 4
+#         t = 0
+#         if @puzzle[row][col] == 0
+#           if box0.include? b[t]
+#             t += 1
+#             if box0.include? b[t]
+#               t += 1
+#               puts 'set in 4'
+#               p @puzzle[row][col] = b[t]
+#               @remove << b[t]
+#             else
+#               puts 'set in 4'
+#               p @puzzle[row][col] = b[t]
+#               @remove << b[t]
+#             end
+#           else
+#             puts 'set in 4'
+#             p @puzzle[row][col] = b[t]
+#             @remove << b[t]
+#           end
+#         end 
+#       else 
+#         t = 0
+#         if @puzzle[row][col] == 0
+#           if box0.include? b[t]
+#             t += 1
+#             if box0.include? b[t]
+#               t += 1
+#               puts 'set in 5'
+#               p @puzzle[row][col] = b[t]
+#               @remove << b[t]
+#             else
+#               puts 'set in 5'
+#               p @puzzle[row][col] = b[t]
+#               @remove << b[t]
+#             end
+#           else
+#             puts 'set in 5'
+#             p @puzzle[row][col] = b[t]
+#             @remove << b[t]
+#           end
+#         end 
+#       end
 
-      if col == 2
-          col = 0
-          if row == 6
-            row = 0
-          else
-            row += 3
-          end
-      else
-          col += 1
-      end
-      puts
-      #p "End --- row:#{row} col:#{col}"
+#       if col == 2
+#           col = 0
+#           if row == 6
+#             row = 0
+#           else
+#             row += 3
+#           end
+#       else
+#           col += 1
+#       end
+#       puts
+#       #p "End --- row:#{row} col:#{col}"
 
-      v += 1
-      i += 1
-    end
-  end
-  0
-end
+#       v += 1
+#       i += 1
+#     end
+#   end
+#   0
+# end
 
 
 #p generator box
@@ -436,81 +436,160 @@ end
 #print_puzzle
 
 
+# def gen2 box
+#   @box = box
+
+#   @numbers_set = []
+#   @numbers_remaining = []
+#   array_element = 0
+#   element_column = 0
+#   @numbers = [1,2,3,4,5,6,7,8,9]
+
+
+#   p "flattened box"
+#   p @box.flatten
+
+#   @num_set = false
+
+#   @box.each do |element|
+#     p "box value: #{element}"
+#     puts
+#     puts
+#     p "--- @puzzle[#{array_element}][#{element_column}] --- Begin"
+#     puts
+#     puts
+#     element -= @numbers_set
+#     p "box after @numbers_set: #{element}"
+#     @v = 1
+  
+#       puts
+#       9.times do
+#         @numbers_remaining = @box.flatten - @numbers_set
+#         if ((@numbers_remaining.count(@v) == 1) && (element.include? @v)) && (@numbers_set.include?(@v) == false)
+#           puts "setting #{@v} because only 1 remaining"
+#           (@puzzle[array_element][element_column] = @v) if (@puzzle[array_element][element_column] = 0)
+#           @num_set = true
+#           p "add to numbers set inside loop"
+#           p @numbers_set << @v
+
+#           @box.each do |b|
+#             if b.include?(@v)
+#               b.delete(@v)
+#             end
+#             #p b
+#           end
+
+#           break
+#         elsif element.length == 1 && (@numbers_set.include?(@v) == false)#@has_number_been_set == false
+#           puts "setting #{element[0]} because only 1 element in array remaining"
+#           (@puzzle[array_element][element_column] = element[0]) if (@puzzle[array_element][element_column] = 0)
+#           @num_set = true
+#           @numbers_set << element[0]
+
+
+#           @box.each do |b|
+#             if b.include?(@v)
+#               b.delete(@v)
+#             end
+#             #p b
+#           end
+
+#           break
+#         else
+#           puts "nothing set for #{@v}"
+#         end
+#         break if @num_set == true
+#         @v += 1
+#       end
+
+#       puts
+#       puts 'numbers set so far'
+#       p @numbers_set
+#       puts
+#       puts 'numbers remaining' 
+#       p @numbers_remaining -= @numbers_set
+      
+#       puts
+#       p @box
+    
+#     p "--- @puzzle[#{array_element}][#{element_column}] --- End"
+#     puts
+
+#     if element_column == 2
+#         element_column = 0
+#         if array_element == 6
+#           array_element = 0
+#         else
+#           array_element += 3
+#         end
+#     else
+#         element_column += 1
+#     end
+#   end
+# end
+
+
+
+
 def gen2 box
+  #@box = box
+  p box
   @numbers_set = []
+  p @numbers_remaining = box.flatten
+
   array_element = 0
   element_column = 0
 
-  @box = box
-
-  p "flattened box"
-  p @box.flatten
-
-  @has_number_been_set = false
-
-  @box.each do |element|
-    p "box value: #{element}"
-    puts
-    puts
-    p "--- @puzzle[#{array_element}][#{element_column}] --- Begin"
-    puts
-    puts
-    element -= @numbers_set
-    p "box after @numbers_set: #{element}"
-    v = 1
+  @numbers = [1,2,3,4,5,6,7,8,9]
   
-      puts
-      9.times do
-        @numbers_remaining = @box.flatten - @numbers_set
-        if ((@numbers_remaining.count(v) == 1) && (element.include? v)) && @numbers_set.include?(v) == false
-          puts "setting #{v} because only 1 remaining"
-          (@puzzle[array_element][element_column] = v) if (@puzzle[array_element][element_column] = 0)
-          @has_number_been_set = true
-          @numbers_set << v
-          break
-        elsif element.length == 1 && @has_number_been_set == false
-          puts "setting #{v} because only 1 element in array remaining"
-          (@puzzle[array_element][element_column] = v) if (@puzzle[array_element][element_column] = 0)
-          @has_number_been_set = true
-          @numbers_set << v
+    
+  box.each do |element|  ### [[9], [2], [3], [4], [6], [5], [7], [8], [1]] box elements
+    puts "@puzzle[#{array_element}][#{element_column}] -- Begin"
+    
+    @numbers.each do |num|
+      if ( @numbers_remaining.count(num) == 1 ) && ( element.include?(num) )
+        p "only 1 #{num} remaining"
+        @puzzle[array_element][element_column] = num
+        @numbers_set << num
+        @numbers -= [num]
 
-          break
-        else
-          puts 'nothing set'
+        box.each do |b|
+          b.pop if b.include? num
+          b.delete(num)
         end
-        v += 1
+
+        #@numbers_remaining -= [num]
       end
       
-      puts 'numbers set'
-      p @numbers_set
-      puts
-      puts 'numbers remaining' 
-      p @numbers_remaining
-      
-      #p box
-      puts
+    end
+    #p element
+
+    puts "@puzzle[#{array_element}][#{element_column}] -- End"
 
     
-    p "--- @puzzle[#{array_element}][#{element_column}] --- End"
-    puts
 
     if element_column == 2
-        element_column = 0
-        if array_element == 6
-          array_element = 0
-        else
-          array_element += 3
-        end
+      element_column = 0
+
+      if array_element == 6
+        array_element = 0
+      else
+        array_element += 3
+      end
     else
-        element_column += 1
+      element_column += 1
     end
+    p "numbers that were set: #{@numbers_set}"
+    #p "numbers remaining in box array: #{@numbers_remaining - @numbers_set}"
+    p "numbers remaining to loop thru: #{@numbers}"
+    p box
   end
+  #gen2 @numbers_remaining if @numbers_remaining != []
 end
 
-
 #gen2 box
-#gen2 [[1],[2],[3],[4],[5],[6],[7],[8],[9]]
-gen2 [[1],[3,4,5],[3,7,8],[4,1,6],[5,6],[2],[7,4],[8,1],[9,3]]
-
+gen2 [[9],[2,3],[3],[4],[6],[5],[7],[8],[1]]
+#gen2 [[2],[9,4,5],[3,7,8],[4,1,6],[5,6],[1],[7,2,4],[1,8],[5,3]]
+puts
 print_puzzle
 
