@@ -554,11 +554,13 @@ def gen2 box
         @numbers -= [num]
 
         box.each do |b|
-          b.pop if b.include? num
+          p "remove #{num} and clear the rest of b #{b}"
+          b.clear if b.include? num
           b.delete(num)
         end
 
-        #@numbers_remaining -= [num]
+        @numbers_remaining -= [num]
+        break if @numbers_remaining == []
       end
       
     end
@@ -566,11 +568,8 @@ def gen2 box
 
     puts "@puzzle[#{array_element}][#{element_column}] -- End"
 
-    
-
     if element_column == 2
-      element_column = 0
-
+        element_column = 0
       if array_element == 6
         array_element = 0
       else
@@ -579,21 +578,27 @@ def gen2 box
     else
       element_column += 1
     end
+
     p "numbers that were set: #{@numbers_set}"
     p "numbers remaining in box array: #{@numbers_remaining - @numbers_set}"
     p "numbers remaining to loop thru: #{@numbers}"
     p "numbers remaining in box: #{box}"
+    p "numbers remaining: #{@numbers_remaining}"
   end
-  #gen2 box if box != []
+
   if box.flatten == []
     p "All done"
   else
-    gen2 box
+    gen2 box 
   end
 end
 
 #gen2 box
+
 gen2 [[9],[2,3],[3],[4],[6],[5],[7],[8],[1]]
+#gen2 [[1],[8],[7],[5],[6],[4],[3],[3,2],[9]] ## working with .clear instead of .pop
+#gen2 [[1],[8],[7],[5],[6],[4],[3,2],[2,3],[9]] ## will not work until i use recursion thru all blocks again
+
 #gen2 [[], [], [3], [], [], [], [], [], []]
 #gen2 [[2],[9,4,5],[3,7,8],[4,1,6],[5,6],[1],[7,2,4],[1,8],[5,3]]
 puts
