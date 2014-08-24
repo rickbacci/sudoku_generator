@@ -580,15 +580,21 @@ def gen2 box
       element_column += 1
     end
     p "numbers that were set: #{@numbers_set}"
-    #p "numbers remaining in box array: #{@numbers_remaining - @numbers_set}"
+    p "numbers remaining in box array: #{@numbers_remaining - @numbers_set}"
     p "numbers remaining to loop thru: #{@numbers}"
-    p box
+    p "numbers remaining in box: #{box}"
   end
-  #gen2 @numbers_remaining if @numbers_remaining != []
+  #gen2 box if box != []
+  if box.flatten == []
+    p "All done"
+  else
+    gen2 box
+  end
 end
 
 #gen2 box
 gen2 [[9],[2,3],[3],[4],[6],[5],[7],[8],[1]]
+#gen2 [[], [], [3], [], [], [], [], [], []]
 #gen2 [[2],[9,4,5],[3,7,8],[4,1,6],[5,6],[1],[7,2,4],[1,8],[5,3]]
 puts
 print_puzzle
