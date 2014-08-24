@@ -268,30 +268,28 @@ def box0r2c2
 end
 
 
-
 def box
   [box0r0c0, box0r0c1, box0r0c2,
    box0r1c0, box0r1c1, box0r1c2,
    box0r2c0, box0r2c1, box0r2c2]
 end
  
-@g= []
-@again = 0
-
-
-
 #generate_center
 #generate_left_and_right_center
 #generate_top_and_bottom_center
 
-
-
-
-
-
-
 def gen2 box
   #@box = box
+
+  def clear_array bx, num
+    #p "this is in test method with #{num}"
+    bx.each do |b|
+      #p "remove #{num} and clear the rest of b #{b}"
+      b.clear if b.include? num
+      #b.delete(num)
+    end
+  end
+
   p box
   @numbers_set = []
   p @numbers_remaining = box.flatten
@@ -311,12 +309,10 @@ def gen2 box
         @puzzle[array_element][element_column] = num
         @numbers_set << num
         @numbers -= [num]
-
-        box.each do |b|
-          p "remove #{num} and clear the rest of b #{b}"
-          b.clear if b.include? num
-          b.delete(num)
-        end
+        
+        #removes num from 'box'
+        clear_array box, num
+        
         @numbers_remaining -= [num]
       end
       
@@ -340,7 +336,7 @@ def gen2 box
     p "numbers remaining in box array: #{@numbers_remaining - @numbers_set}"
     p "numbers remaining to loop thru: #{@numbers}"
     p "numbers remaining in box: #{box}"
-    p "numbers remaining: #{@numbers_remaining}"
+    #p "numbers remaining: #{@numbers_remaining}"
   end
 
   if box.flatten == []
@@ -353,11 +349,16 @@ end
 #gen2 box
 
 gen2 [[9],[2,3],[3],[4],[6],[5],[7],[8],[1]]
-#gen2 [[1],[8],[7],[5],[6],[4],[3],[3,2],[9]] ## working with .clear instead of .pop
+print_puzzle
+puts "---------------------------------------------------------------------------------------------"
+gen2 [[1],[8],[7],[5],[6],[4],[3],[3,2],[9]] ## working with .clear instead of .pop
+print_puzzle
+puts "---------------------------------------------------------------------------------------------"
+#gen2 [[2],[9,4,5],[3,7,8],[4,1,6],[5,6],[1],[7,2,4],[1,8],[5,3]]
+
+
+
+
 #gen2 [[1],[8],[7],[5],[6],[4],[3,2],[2,3],[9]] ## will not work until i use recursion thru all blocks again
 
-#gen2 [[], [], [3], [], [], [], [], [], []]
-#gen2 [[2],[9,4,5],[3,7,8],[4,1,6],[5,6],[1],[7,2,4],[1,8],[5,3]]
-puts
-print_puzzle
 
