@@ -4,24 +4,15 @@ require_relative 'puzzle_rows.rb'
 require_relative 'puzzle_columns.rb'
 require_relative 'puzzle_boxes.rb'
 
+require_relative 'generate_center'
 require_relative 'generate_left_and_right_center'
 require_relative 'generate_top_and_bottom_center'
 
 require_relative 'box_0'
 
+require_relative 'print_puzzle'
 
-@x = [1,2,3,4,5,6,7,8,9]
 
-def generate_center
-  @x.shuffle!
-  @puzzle[10] = @x[0,3]
-  @puzzle[13] = @x[3,3]
-  @puzzle[16] = @x[6,3]
-end
-
-def print_puzzle
-  p row0, row1, row2, row3, row4, row5, row6, row7, row8
-end
 
 
 
@@ -86,6 +77,7 @@ def gen2 box
 end
 
 #generate_center
+generate_box1
 #generate_left_and_right_center
 #generate_top_and_bottom_center
 #gen2 box
@@ -97,6 +89,11 @@ puts "--------------------------------------------------------------------------
 gen2 [[1],[8],[7],[5],[6],[4],[3],[3,2],[9]] ## working with .clear instead of .pop
 print_puzzle
 puts "---------------------------------------------------------------------------------------------"
+
+gen2 [[1,3,8],[3,8],[7],[6,5],[6],[4],[3],[3,2],[9,3]]
+print_puzzle
+puts "---------------------------------------------------------------------------------------------"
+
 #gen2 [[2],[9,4,5],[3,7,8],[4,1,6],[5,6],[1],[7,2,4],[1,8],[5,3]]
 
 
