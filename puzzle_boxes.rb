@@ -1,6 +1,4 @@
-def box0
-  @box0 =  @puzzle[ 0] + @puzzle[ 3] + @puzzle[ 6]
-end
+
 
 def box1
   @box1 =  @puzzle[ 1] + @puzzle[ 4] + @puzzle[ 7]
