@@ -1,11 +1,13 @@
 require_relative 'empty_puzzle.rb'
+
 require_relative 'puzzle_rows.rb'
 require_relative 'puzzle_columns.rb'
 require_relative 'puzzle_boxes.rb'
+
 require_relative 'generate_left_and_right_center'
 require_relative 'generate_top_and_bottom_center'
 
-
+require_relative 'box_0'
 
 
 @x = [1,2,3,4,5,6,7,8,9]
@@ -17,70 +19,13 @@ def generate_center
   @puzzle[16] = @x[6,3]
 end
 
-
-  
-
-
 def print_puzzle
   p row0, row1, row2, row3, row4, row5, row6, row7, row8
 end
 
 
-## row 0 box 0
-def box0r0c0
-  @x.shuffle - row0 - col0
-end
-#p box0r1c0
-
-def box0r0c1
-  @x.shuffle - row0 - col1
-end
-#p box0r1c1
-
-def box0r0c2
-  @x.shuffle - row0 - col2
-end
-
-
-## row 1 box 0
-def box0r1c0
-  @x.shuffle - row1 - col0
-end
-
-def box0r1c1
-  @x.shuffle - row1 - col1
-end
-
-def box0r1c2
-  @x.shuffle - row1 - col2
-end
-
-
-def box0r2c0
-  @x.shuffle - row2 - col0
-end
-
-def box0r2c1
-  @x.shuffle - row2 - col1
-end
-
-def box0r2c2
-  @x.shuffle - row2 - col2
-end
-
-
-def box
-  [box0r0c0, box0r0c1, box0r0c2,
-   box0r1c0, box0r1c1, box0r1c2,
-   box0r2c0, box0r2c1, box0r2c2]
-end
- 
-generate_center
-generate_left_and_right_center
-generate_top_and_bottom_center
 
 def gen2 box
-  #@box = box
 
   def clear_array bx, num
     #p "this is in test method with #{num}"
@@ -93,30 +38,25 @@ def gen2 box
 
   p box
   @numbers_set = []
-  p @numbers_remaining = box.flatten
 
   array_element = 0
   element_column = 0
 
   @numbers = [1,2,3,4,5,6,7,8,9]
   
-    
-  box.each do |element|  ### [[9], [2], [3], [4], [6], [5], [7], [8], [1]] box elements
+  box.each do |element|
     puts "@puzzle[#{array_element}][#{element_column}] -- Begin"
     
     @numbers.each do |num|
-      if ( @numbers_remaining.count(num) == 1 ) && ( element.include?(num) )
+      if ( box.flatten.count(num) == 1 ) && ( element.include?(num) )
         p "only 1 #{num} remaining"
         @puzzle[array_element][element_column] = num
         @numbers_set << num
         @numbers -= [num]
         
         #removes num from 'box'
-        clear_array box, num
-        
-        @numbers_remaining -= [num]
+        clear_array(box, num)
       end
-      
     end
     #p element
 
@@ -134,10 +74,8 @@ def gen2 box
     end
 
     p "numbers that were set: #{@numbers_set}"
-    p "numbers remaining in box array: #{@numbers_remaining - @numbers_set}"
     p "numbers remaining to loop thru: #{@numbers}"
     p "numbers remaining in box: #{box}"
-    #p "numbers remaining: #{@numbers_remaining}"
   end
 
   if box.flatten == []
@@ -147,7 +85,11 @@ def gen2 box
   end
 end
 
+#generate_center
+#generate_left_and_right_center
+#generate_top_and_bottom_center
 #gen2 box
+
 
 gen2 [[9],[2,3],[3],[4],[6],[5],[7],[8],[1]]
 print_puzzle
