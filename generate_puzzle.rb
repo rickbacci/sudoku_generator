@@ -14,35 +14,33 @@ require_relative 'print_puzzle'
 
 
 def gen2 box
-  @box = box
+
 
   def clear_array bx, num
     p "@puzzle[#{@array_element}][#{@element_column}] set to num: #{num}"
     #p "this is in test method with #{num}"
 
-    p "box[#{@i}] set to empty?: #{[]}"
+    p "box[#{@i}] set to empty?: #{[]}"  ### not right? Shows box element?
     bx[@i] = []
 
     bx.each do |b|
       if b.include? num                                       
-        p "delete the #{num}'s out of b #{b}"
+        #p "delete the #{num}'s out of b #{b}"
         b.delete(num)
-        p "b#{b} after deleting #{num}"
+        #p "b#{b} after deleting #{num}"
       end
     end
     puts
-    p "box after all #{num}'s deleted"
+    p "@box after all #{num}'s deleted"
     p bx
   end
-  p "Starting box"
-  p box
-  puts
-  #p "box flatten outside loop#{box.flatten}"
-  #@numbers_set = []
 
+
+  p "Starting box"
+  p @box = box
+  puts
   @array_element = 0
   @element_column = 0
-
   @numbers = [1,2,3,4,5,6,7,8,9]
   @i = 0
   @numbers_set = []
@@ -53,46 +51,58 @@ def gen2 box
     puts "@puzzle[#{@array_element}][#{@element_column}] -- Begin"
 
     if element != []
-    @numbers.each do |num|
-      p "element: #{element}"
-      p "num: #{num}"
-       @test = @box.flatten
-      p "Checking number: #{num}...there were #{@test.count(num)} found"
+      @numbers.each do |num|
+        # p "@box element: #{element}"
+        # #p "num: #{num}"
+        # @test = @box.flatten
 
-      if ( @test.count(num) == 1 ) && ( element.include?(num) )
-        p "num: #{num}"
-        p "number set because only 1: #{num} remaining and it exists in this element"
-        (@puzzle[@array_element][@element_column] = num) if (@puzzle[@array_element][@element_column] = 0)
-        update_puzzle
+        if ( element.include?(num) )
+          p "@box element: #{element}"
+          #p "num: #{num}"
+          @test = @box.flatten
 
-        @numbers_set << num
-        @numbers -= [num]
-        
-        #removes num from 'box'
-        clear_array(@box, num)
-        break ## needs to stay!
+          p "Checking number: #{num}...there were #{@test.count(num)} found"
 
-      elsif (element.length == 1) && ( element.include?(num) )#(element.empty? == false)
-        p "num: #{num}"
-        p "element: #{element} set because element had '(array.length == 1) && (empty? == false)'"
-        (@puzzle[@array_element][@element_column] = num) if (@puzzle[@array_element][@element_column] = 0)
-        update_puzzle
-        @numbers_set << num
+          if ( @test.count(num) == 1 ) && ( element.include?(num) )
+            #p "num: #{num}"
+            p "number set because only 1: #{num} remaining and it exists in this element"
+            (@puzzle[@array_element][@element_column] = num) if (@puzzle[@array_element][@element_column] = 0)
+            update_puzzle
 
-        @numbers -= [num]
+            @numbers_set << num
+            @numbers -= [num]
+            
+            #removes num from 'box'
+            clear_array(@box, num)
+            break ## needs to stay!
 
-        
-         #removes num from 'box'
-        clear_array(@box, num)
+          elsif (element.length == 1) && ( element.include?(num) )#(element.empty? == false)
+            #p "num: #{num}"
+            p "element: #{element} set because element had '(array.length == 1) && (empty? == false)'"
+            (@puzzle[@array_element][@element_column] = num) if (@puzzle[@array_element][@element_column] = 0)
+            update_puzzle
+            @numbers_set << num
 
-        break ## needs to stay!
+            @numbers -= [num]
+
+            
+             #removes num from 'box'
+            clear_array(@box, num)
+
+            break ## needs to stay!
+          else
+            #p "NOTHING SET!"
+          end
+        else
+          #p  "num doesn't exist in this element"
+
+        end
       end
-    end
     else
     p 'already set'
     end
 
-    puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
+    #puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
 
     if @element_column == 2
         @element_column = 0
@@ -106,10 +116,13 @@ def gen2 box
     end
     puts
     p "numbers that were set this loop: #{@numbers_set}"
+
     total_numbers_set = box0.select { |val| val != 0 }
     p "total numbers in box that are set: #{total_numbers_set}"
+
     p "numbers remaining to loop thru: #{@numbers - total_numbers_set}"
     p "numbers remaining in box: #{@box}"
+    puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
     puts
     @numbers_set = []
     @i += 1
