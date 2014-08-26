@@ -1,14 +1,14 @@
 
 def row0
-  @row0 = @puzzle[ 0] + @puzzle[ 1] + @puzzle[ 2]
+    @row0 = @puzzle[0] + @puzzle[ 1] + @puzzle[ 2]
 end
 
 def row1
-  @row1 = @puzzle[ 3] + @puzzle[ 4] + @puzzle[ 5]
+    @row1 = @puzzle[3] + @puzzle[ 4] + @puzzle[ 5]
 end
 
 def row2
-  @row2 = @puzzle[ 6] + @puzzle[ 7] + @puzzle[ 8]
+    @row2 = @puzzle[6] + @puzzle[ 7] + @puzzle[ 8]
 end
 
 def row3
