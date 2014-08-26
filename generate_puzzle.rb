@@ -13,126 +13,110 @@ require_relative 'box_0'
 require_relative 'print_puzzle'
 
 
-
-
-
 def gen2 box
   @box = box
 
   def clear_array bx, num
-    p "#{@i} this shows what element of box"
+    p "@puzzle[#{@array_element}][#{@element_column}] set to num: #{num}"
     #p "this is in test method with #{num}"
-    p bx[@i] = []
 
-    bx.each do |b|                                             ######### this needs fixed???
-                                                               ### if in element that was set delete everything
-      p "delete the #{num}'s out of b #{b}"                    ### only delete num in other elements           
+    p "box[#{@i}] set to empty?: #{[]}"
+    bx[@i] = []
 
-      #p bx[@i] = []
-
-      b.delete(num)
-
-      #p "#{b} after clear"
-      p "#{b} after deleting #{num}"
-
+    bx.each do |b|
+      if b.include? num                                       
+        p "delete the #{num}'s out of b #{b}"
+        b.delete(num)
+        p "b#{b} after deleting #{num}"
+      end
     end
-    p 'box after all deleted'
+    puts
+    p "box after all #{num}'s deleted"
     p bx
   end
-
+  p "Starting box"
   p box
-  p "box flatten outside loop#{box.flatten}"
-  @numbers_set = []
+  puts
+  #p "box flatten outside loop#{box.flatten}"
+  #@numbers_set = []
 
-  array_element = 0
-  element_column = 0
+  @array_element = 0
+  @element_column = 0
 
   @numbers = [1,2,3,4,5,6,7,8,9]
   @i = 0
+  @numbers_set = []
+
   @box.each do |element|
 
     @test = @box.flatten
-    puts "@puzzle[#{array_element}][#{element_column}] -- Begin"
-    
+    puts "@puzzle[#{@array_element}][#{@element_column}] -- Begin"
+
+    if element != []
     @numbers.each do |num|
+      p "element: #{element}"
+      p "num: #{num}"
        @test = @box.flatten
       p "Checking number: #{num}...there were #{@test.count(num)} found"
 
       if ( @test.count(num) == 1 ) && ( element.include?(num) )
-        p "number set because only 1 #{num} remaining"
-        @puzzle[array_element][element_column] = num
+        p "num: #{num}"
+        p "number set because only 1: #{num} remaining and it exists in this element"
+        (@puzzle[@array_element][@element_column] = num) if (@puzzle[@array_element][@element_column] = 0)
+        update_puzzle
+
         @numbers_set << num
         @numbers -= [num]
         
         #removes num from 'box'
         clear_array(@box, num)
-      elsif (element.length == 1) && (element.empty? == false)
+        break ## needs to stay!
 
-        p "element: #{element} set because element had (array.length == 1) with a value of '#{element[0]}'(empty? == false)"
-        @puzzle[array_element][element_column] = element[0]
-        @numbers_set << element[0]
-        @numbers -= [element[0]]
+      elsif (element.length == 1) && ( element.include?(num) )#(element.empty? == false)
+        p "num: #{num}"
+        p "element: #{element} set because element had '(array.length == 1) && (empty? == false)'"
+        (@puzzle[@array_element][@element_column] = num) if (@puzzle[@array_element][@element_column] = 0)
+        update_puzzle
+        @numbers_set << num
+
+        @numbers -= [num]
+
         
          #removes num from 'box'
-        clear_array(@box, element[0])
-      # elsif ( @test.count(num) == 2 ) && ( element.include?(num) ) && element.length == 2
-      #   p @test
-      #   p "number in 2nd option #{num}"
-      #   p "This element #{element} has a length of 2 with only 2 #{num}'s left"
-      #   @puzzle[array_element][element_column] = num
-      #   @numbers_set << num
-      #   @numbers -= [num]
-        
-      #   #removes num from 'box'
-      #   clear_array(@box, num)
-      # elsif ( @test.count(num) == 4 ) && ( element.include?(num) ) && element.length == 3
-      #   p @test
-      #   p "number in 3rd option #{num}"
-      #   p "This element #{element} has a length of 3 with only 3 #{num}'s left"
-      #   @puzzle[array_element][element_column] = num
-      #   @numbers_set << num
-      #   @numbers -= [num]
-        
-      #   #removes num from 'box'
-      #   clear_array(@box, num)
-      # elsif ( @test.count(num) == 4 ) && ( element.include?(num) ) && element.length == 4
-      #   p @test
-      #   p "number in 4th option #{num}"
-      #   p "This element #{element} has a length of 4 with only 4 #{num}'s left"
-      #   @puzzle[array_element][element_column] = num
-      #   @numbers_set << num
-      #   @numbers -= [num]
-        
-      #   #removes num from 'box'
-      #   clear_array(@box, num)
+        clear_array(@box, num)
+
+        break ## needs to stay!
       end
-
     end
-    #p element
+    else
+    p 'already set'
+    end
 
-    puts "@puzzle[#{array_element}][#{element_column}] -- End"
+    puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
 
-    if element_column == 2
-        element_column = 0
-      if array_element == 6
-        array_element = 0
+    if @element_column == 2
+        @element_column = 0
+      if @array_element == 6
+        @array_element = 0
       else
-        array_element += 3
+        @array_element += 3
       end
     else
-      element_column += 1
+      @element_column += 1
     end
-
-    p "numbers that were set: #{@numbers_set}"
-    p "numbers remaining to loop thru: #{@numbers}"
+    puts
+    p "numbers that were set this loop: #{@numbers_set}"
+    total_numbers_set = box0.select { |val| val != 0 }
+    p "total numbers in box that are set: #{total_numbers_set}"
+    p "numbers remaining to loop thru: #{@numbers - total_numbers_set}"
     p "numbers remaining in box: #{@box}"
-    p "box.flattened : #{@box.flatten}"
-
+    puts
+    @numbers_set = []
     @i += 1
   end
 
   if @box.flatten == []
-    p "All done"
+    p "All done!"
   else
     #gen2 box 
   end
@@ -144,9 +128,9 @@ end
 # generate_top_and_bottom_center
 #gen2 box
 
-gen2 [[9,1],[2,9],[3],[4],[5],[6],[7],[8],[1]]
+#gen2 [[9,1],[2,9],[3],[4],[5],[6],[7],[8],[1]]
 #gen2 [[9],[2,3],[3],[4],[6],[5],[7],[8],[1]]
-print_puzzle
+#print_puzzle
 puts "---------------------------------------------------------------------------------------------"
 # gen2 [[1],[8],[7],[5],[6],[4],[3],[3,2],[9]] ## working with .clear instead of .pop
 # print_puzzle
@@ -163,7 +147,7 @@ puts "--------------------------------------------------------------------------
 # gen2 [[], [], [3, 7, 8], [4], [], [], [7, 3, 8, 4, 5], [8, 5], [5, 3]]
 # #gen2 [[], [], [7], [], [], [], [7,6], [], []]
 
-#gen2 box_0_array
+
 
 #gen2 [[2, 8, 4, 6], [2, 4, 9, 3], [8, 6, 3, 9], [5, 1, 6], [7, 1, 3, 9], [9, 3, 7, 5, 6], [1, 8, 4, 5, 2], [2, 1, 4, 7], [7, 8, 5]]
 #gen2 [[4, 6], [4, 9], [6, 9], [], [], [9, 7, 5, 6], [4, 5], [], []]
@@ -172,6 +156,40 @@ puts "--------------------------------------------------------------------------
 #       [1,2,5,8], [1,2,3,5,6], [3,6,7],
 #       [2,4,5,8], [2,5,6,9], [4,6,8,9]]
 
+
+
+#gen2 box_0_array
+# gen2  [[1,2,3], [7,8,9], [1,2,3,7,8,9],
+#        [1,2,3,4,5,6], [4,5,6], [1,2,3],
+#        [4,5,6], [4,5,6,7,8,9], [7,8,9]]
+
+## places single element array with numbers in that array in other elements
+# gen2  [[1], [7,8,9], [1,2,3,7,8,9],
+#         [1,2,3,4,5,6], [4,5,6], [1,2,3],
+#         [4,5,6], [4,5,6,7,8,9], [7,8,9]]
+
+# places 2 single element arrays
+# gen2  [[1], [7,8,9], [1,2,3,7,8,9],
+#         [1,2,3,4,5,6], [4,5,6], [1,2,3],
+#         [4,5,6], [4,5,6,7,8,9], [7]]
+
+# should place 2 single element arrays and a single remaining number
+gen2  [[1], [7,8], [1,2,3,7,8,9],
+        [1,2,3,4,5,6], [4,5,6], [1,2,3],
+        [4,5,6], [4,5,6,7,8], [7]]
+puts
+puts
+puts
+puts
+puts
+p "IN 2ND PASS!!!"
+puts
+puts
+puts
+puts 
+puts
+
+gen2 [[], [8], [], [2, 3, 4, 5, 6], [4, 5, 6], [2, 3], [4, 5, 6], [4, 5, 6, 8], []]
 puts
 
 #print_puzzle
@@ -193,9 +211,59 @@ p @puzzle[21..23]
 p @puzzle[24..26]
 puts "---------------------------------------------------------------------------------------------"
 
-p @puzzle[3] + @puzzle[4] + @puzzle[5]
-p row1
+# p box0r0c0
+# p box0r0c1
+# p box0r0c2
 
-@puzzle[5][2] = 9
-p row1
-p row1 - row0
+# p box0r1c0
+# p box0r1c1
+# p box0r1c2
+
+# p box0r2c0
+# p box0r2c1
+# p box0r2c2
+
+
+
+##### box_0_array WILL BE DIFFERENT THAN @box NOW!!! #####
+# @box.each_with_index do |array, index|
+#   p "Index: #{index} Array: #{array}" 
+# end
+
+
+
+
+
+  
+      # elsif ( @test.count(num) == 2 ) && ( element.include?(num) ) && element.length == 2
+      #   if (@puzzle[array_element][element_column] = 0)
+      #     p @test
+      #     p "number in 2nd option #{num}"
+      #     p "This element #{element} has a length of 2 with only 2 #{num}'s left"
+      #     (@puzzle[array_element][element_column] = num) 
+      #     @numbers_set << num
+      #     @numbers -= [num]
+      #   end
+      #   #removes num from 'box'
+      #   clear_array(@box, num)
+      # elsif ( @test.count(num) == 4 ) && ( element.include?(num) ) && element.length == 3
+      #   if (@puzzle[array_element][element_column] = 0)
+      #     p @test
+      #     p "number in 3rd option #{num}"
+      #     p "This element #{element} has a length of 3 with only 3 #{num}'s left"
+      #     (@puzzle[array_element][element_column] = num) if (@puzzle[array_element][element_column] = 0)
+      #     @numbers_set << num
+      #     @numbers -= [num]
+      #   end
+      #   #removes num from 'box'
+      #   clear_array(@box, num)
+      # elsif ( @test.count(num) == 4 ) && ( element.include?(num) ) && element.length == 4
+      #   p @test
+      #   p "number in 4th option #{num}"
+      #   p "This element #{element} has a length of 4 with only 4 #{num}'s left"
+      #   @puzzle[array_element][element_column] = num
+      #   @numbers_set << num
+      #   @numbers -= [num]
+        
+      #   #removes num from 'box'
+      #   clear_array(@box, num)

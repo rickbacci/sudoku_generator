@@ -1,9 +1,8 @@
 def col0
   @col0 =  
    [@puzzle[ 0][0]] << @puzzle[ 3][0] << @puzzle[ 6][0] << 
-   [@puzzle[ 9][0]] << @puzzle[12][0] << @puzzle[15][0] << 
-    @puzzle[18][0] << @puzzle[21][0] << @puzzle[24][0]
-    col0
+     @puzzle[ 9][0] << @puzzle[12][0] << @puzzle[15][0] << 
+     @puzzle[18][0] << @puzzle[21][0] << @puzzle[24][0]
 end
 
 def col1
@@ -11,7 +10,6 @@ def col1
   [@puzzle[ 0][1]] << @puzzle[ 3][1] << @puzzle[ 6][1] << 
    @puzzle[ 9][1] << @puzzle[12][1] << @puzzle[15][1] << 
    @puzzle[18][1] << @puzzle[21][1] << @puzzle[24][1]
-   col1
 end             
 
 def col2
@@ -19,7 +17,6 @@ def col2
   [@puzzle[ 0][2]] << @puzzle[ 3][2] << @puzzle[ 6][2] << 
    @puzzle[ 9][2] << @puzzle[12][2] << @puzzle[15][2] <<
    @puzzle[18][2] << @puzzle[21][2] << @puzzle[24][2]
-   col2
 end
 
 def col3
