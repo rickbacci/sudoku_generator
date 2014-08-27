@@ -24,7 +24,8 @@ def find_lengths box
   box.each do |box|
     @element_lengths << box.length
   end
-  @element_lengths
+    @starting_lengths ||= @element_lengths
+  p @element_lengths
 end
 
 
@@ -41,18 +42,38 @@ def generate box
   if @element_lengths.include? 1
     solve_for_one box
   elsif @element_lengths.include? 2
+    solve_for_one box
     solve_for_two box
   elsif @element_lengths.include? 3
+    solve_for_one box
+    solve_for_two box
     solve_for_three box
   else
+    solve_for_one box
+    solve_for_two box
+    solve_for_three box
     solve_for_four box
   end
 
+  @blah ||= 1
+  p "outside: #{@blah}"
   if @box.flatten == []
       p "All done!"
+      p "starting lengths were: #{@starting_lengths}"
   else
+    @blah += 1
     p "not done!"
-    generate box 
+    p "inside: #{@blah}"
+    p "starting lengths were: #{@starting_lengths}"
+
+
+
+    if @blah < 10
+      p 'in recursion'
+      generate box
+    else
+      "terminated for error"
+    end
   end
 end
 
