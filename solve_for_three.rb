@@ -4,8 +4,8 @@ def solve_for_three box
   p @box = box
   puts
 
-  @array_element = 0
-  @element_column = 0
+  # @array_element = 0
+  # @element_column = 0
   @numbers = [1,2,3,4,5,6,7,8,9]
   @i = 0
   @numbers_set = []
@@ -53,16 +53,7 @@ def solve_for_three box
     puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
     puts
 
-    if @element_column == 2
-        @element_column = 0
-      if @array_element == 6
-        @array_element = 0
-      else
-        @array_element += 3
-      end
-    else
-      @element_column += 1
-    end
+    box_location
     output_info
     @numbers_set = []
     @i += 1
