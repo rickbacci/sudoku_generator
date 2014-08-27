@@ -9,6 +9,7 @@ require_relative 'generate_left_and_right_center'
 require_relative 'generate_top_and_bottom_center'
 
 require_relative 'box_0'
+require_relative 'box_2'
 
 require_relative 'solve_for_one'
 require_relative 'solve_for_two'
@@ -16,6 +17,66 @@ require_relative 'solve_for_three'
 require_relative 'solve_for_four'
 
 require_relative 'print_puzzle'
+
+
+# p "Starting box"
+#   p @box = box
+#   puts
+
+  # @array_element = 0
+  # @element_column = 0
+  # @numbers = [1,2,3,4,5,6,7,8,9]
+  # @i = 0
+  # @numbers_set = []
+
+
+
+
+
+def update_value num
+
+  if @puzzle[@array_element][@element_column] = 0
+    @puzzle[@array_element][@element_column] = num
+  end
+
+  @numbers_set << num
+  @numbers -= [num]
+end
+
+
+def clear_array bx, num
+  p "@puzzle[#{@array_element}][#{@element_column}] set to num: #{num}"
+  #p "this is in test method with #{num}"
+
+  p "box[#{@i}] set to empty?: #{[]}"  ### not right? Shows box element?
+  bx[@i] = []
+
+  bx.each do |b|
+    if b.include? num                                       
+      #p "delete the #{num}'s out of b #{b}"
+      b.delete(num)
+      #p "b#{b} after deleting #{num}"
+    end
+  end
+  puts
+  p "@box after all #{num}'s deleted"
+  p bx
+  puts
+end
+  
+
+def output_info
+  puts
+  p "numbers that were set this loop: #{@numbers_set}"
+
+  total_numbers_set = box0.select { |val| val != 0 }
+  p "total numbers in box that are set: #{total_numbers_set}"
+
+  p "numbers remaining to loop thru: #{@numbers - total_numbers_set}"
+  p "numbers remaining in box: #{@box}"
+  puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
+  puts
+end
 
 
 def find_lengths box
@@ -45,6 +106,27 @@ def fewest_remaining? values
   p "There are only #{@amt_remaining} number #{@lowest_remaining}'s left."
 end
 
+def box_location
+  if @element_column == 2
+      @element_column = 0
+    if @start == 0
+      if @array_element == 6
+        @array_element = 0
+      else
+        @array_element += 3
+      end
+    elsif @start == 2
+      if @array_element == 8
+        @array_element = 2
+      else
+        @array_element += 3
+      end
+    end
+  else
+    @element_column += 1
+  end
+end
+
 generate_center
 generate_left_and_right_center
 generate_top_and_bottom_center
@@ -53,13 +135,12 @@ generate_top_and_bottom_center
 def generate box
 
   find_lengths box
-  fewest_remaining? box
-  solve_for_one box
+  x = fewest_remaining? box
 
 
-  if @element_lengths.include? 1
+  if @element_lengths.include? 1 || x == 1
     solve_for_one box
-  elsif @element_lengths.include? 2
+  elsif @element_lengths.include? 2 || x == 2
    # solve_for_one box
     solve_for_two box
   elsif @element_lengths.include? 3
@@ -94,7 +175,17 @@ def generate box
   end
 end
 
+@start = 0
+@array_element = 0
+@element_column = 0
+
 generate box_0_array
+
+@start = 2
+@array_element = 2
+@element_column = 0
+
+generate box_2_array
 
 
 
