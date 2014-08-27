@@ -74,18 +74,9 @@ def solve_for_three box
 
           p "Checking number: #{num}...there were #{@test.count(num)} found"
 
-          if ( @test.count(num) == 1 ) && ( element.include?(num) )
-            # #p "num: #{num}"
-            # p "number set because only 3: #{num} remaining and it exists in this element"
-            
-            # update_value num  # sets value in @puzzle
-            # update_puzzle  #refreshes puzzle values
-            # clear_array(@box, num)  #removes num from 'box'
-            # #output_info
+          
 
-            # break ## needs to stay!
-
-          elsif (element.length == 3) && ( element.include?(num) )
+          if (element.length == 3) && ( element.include?(num) )
             #p "num: #{num}"
             p "element: #{element} set because element had '(array.length == 3) && (empty? == false)'"
 
