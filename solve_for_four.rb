@@ -1,4 +1,4 @@
-def solve_for_three box
+def solve_for_four box
 
 
   def update_value num
@@ -76,7 +76,7 @@ def solve_for_three box
 
           if ( @test.count(num) == 1 ) && ( element.include?(num) )
             # #p "num: #{num}"
-            # p "number set because only 3: #{num} remaining and it exists in this element"
+            # p "number set because only 4: #{num} remaining and it exists in this element"
             
             # update_value num  # sets value in @puzzle
             # update_puzzle  #refreshes puzzle values
@@ -87,7 +87,7 @@ def solve_for_three box
 
           elsif (element.length == 3) && ( element.include?(num) )
             #p "num: #{num}"
-            p "element: #{element} set because element had '(array.length == 3) && (empty? == false)'"
+            p "element: #{element} set because element had '(array.length == 4) && (empty? == false)'"
 
             update_value num  # sets value in @puzzle
             update_puzzle  #refreshes puzzle values
