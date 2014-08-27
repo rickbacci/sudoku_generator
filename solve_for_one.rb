@@ -2,6 +2,7 @@ def solve_for_one box
 
 
   def update_value num
+
     if @puzzle[@array_element][@element_column] = 0
       @puzzle[@array_element][@element_column] = num
     end
@@ -124,9 +125,5 @@ def solve_for_one box
     @numbers_set = []
     @i += 1
   end
-  if @box.flatten == []
-    p "All done!"
-  else
-    #gen2 box 
-  end
+  
 end

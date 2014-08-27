@@ -1,50 +1,5 @@
 def solve_for_two box
 
-
-  def update_value num
-    if @puzzle[@array_element][@element_column] = 0
-      @puzzle[@array_element][@element_column] = num
-    end
-
-    @numbers_set << num
-    @numbers -= [num]
-  end
-
-
-  def clear_array bx, num
-    p "@puzzle[#{@array_element}][#{@element_column}] set to num: #{num}"
-    #p "this is in test method with #{num}"
-
-    p "box[#{@i}] set to empty?: #{[]}"  ### not right? Shows box element?
-    bx[@i] = []
-
-    bx.each do |b|
-      if b.include? num                                       
-        #p "delete the #{num}'s out of b #{b}"
-        b.delete(num)
-        #p "b#{b} after deleting #{num}"
-      end
-    end
-    puts
-    p "@box after all #{num}'s deleted"
-    p bx
-    puts
-  end
-  
-
-  def output_info
-    puts
-    p "numbers that were set this loop: #{@numbers_set}"
-
-    total_numbers_set = box0.select { |val| val != 0 }
-    p "total numbers in box that are set: #{total_numbers_set}"
-
-    p "numbers remaining to loop thru: #{@numbers - total_numbers_set}"
-    p "numbers remaining in box: #{@box}"
-    puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
-    puts
-  end
-
   p "Starting box"
   p @box = box
   puts
@@ -63,9 +18,9 @@ def solve_for_two box
 
     if element != []
       @numbers.each do |num|
-        # p "@box element: #{element}"
-        # #p "num: #{num}"
-        # @test = @box.flatten
+      # p "@box element: #{element}"
+      # #p "num: #{num}"
+      # @test = @box.flatten
 
         if ( element.include?(num) )
           p "@box element: #{element}"
@@ -77,17 +32,6 @@ def solve_for_two box
           if ( @test.count(num) == 2 ) && ( element.include?(num) )
             #p "num: #{num}"
             p "number set because only 2: #{num} remaining and it exists in this element"
-            
-            update_value num  # sets value in @puzzle
-            update_puzzle  #refreshes puzzle values
-            clear_array(@box, num)  #removes num from 'box'
-            #output_info
-
-            break ## needs to stay!
-
-          elsif (element.length == 2) && ( element.include?(num) )
-            #p "num: #{num}"
-            p "element: #{element} set because element had '(array.length == 2) && (empty? == false)'"
 
             update_value num  # sets value in @puzzle
             update_puzzle  #refreshes puzzle values
@@ -99,12 +43,12 @@ def solve_for_two box
           elsif (element.length == 2) && ( element.include?(num) )
             #p "num: #{num}"
             p "element: #{element} set because element had '(array.length == 2) && (empty? == false)'"
-            
+
             if true #box0.include? num == false
-              update_value num  # sets value in @puzzle
-              update_puzzle  #refreshes puzzle values
-              clear_array(@box, num)  #removes num from 'box'
-              #output_info
+            update_value num  # sets value in @puzzle
+            update_puzzle  #refreshes puzzle values
+            clear_array(@box, num)  #removes num from 'box'
+            #output_info
             end
 
             break ## needs to stay!
@@ -122,11 +66,11 @@ def solve_for_two box
     puts
 
     if @element_column == 2
-        @element_column = 0
+      @element_column = 0
       if @array_element == 6
-        @array_element = 0
+      @array_element = 0
       else
-        @array_element += 3
+      @array_element += 3
       end
     else
       @element_column += 1
@@ -136,7 +80,3 @@ def solve_for_two box
     @i += 1
   end
 end
-
-
-
-

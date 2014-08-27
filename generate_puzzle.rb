@@ -24,51 +24,68 @@ def find_lengths box
   box.each do |box|
     @element_lengths << box.length
   end
-    @starting_lengths ||= @element_lengths
-  p @element_lengths
+
+  @starting_lengths ||= @element_lengths
+  @element_lengths
 end
 
+def fewest_remaining? values
+  p @flat = values.flatten
+  @lowest_remaining ||= 0
+  
+  (1..9).each do |num| 
+    if num == 1
+      @lowest_remaining = num
+      @amt_remaining = @flat.count(num)
+    elsif (@flat.count(num) < @amt_remaining)
+      @lowest_remaining = num
+      @amt_remaining = @flat.count(num)
+    end
+  end
+  p "There are only #{@amt_remaining} number #{@lowest_remaining}'s left."
+end
 
 generate_center
 generate_left_and_right_center
 generate_top_and_bottom_center
 
 
-
 def generate box
 
   find_lengths box
+  fewest_remaining? box
+  solve_for_one box
+
 
   if @element_lengths.include? 1
     solve_for_one box
   elsif @element_lengths.include? 2
-    solve_for_one box
+   # solve_for_one box
     solve_for_two box
   elsif @element_lengths.include? 3
-    solve_for_one box
-    solve_for_two box
+    # solve_for_one box
+    # solve_for_two box
     solve_for_three box
-  else
-    solve_for_one box
-    solve_for_two box
-    solve_for_three box
+  elsif @element_lengths.include? 4
+    # solve_for_one box
+    # solve_for_two box
+    # solve_for_three box
     solve_for_four box
   end
 
   @blah ||= 1
-  p "outside: #{@blah}"
   if @box.flatten == []
-      p "All done!"
-      p "starting lengths were: #{@starting_lengths}"
+    p "All done!"
+    p "starting lengths were: #{@starting_lengths}"
+    p "There are only #{@amt_remaining} number #{@lowest_remaining}'s left."
   else
     @blah += 1
     p "not done!"
     p "inside: #{@blah}"
     p "starting lengths were: #{@starting_lengths}"
+    p "There are only #{@amt_remaining} number #{@lowest_remaining}'s left."
 
-
-
-    if @blah < 10
+    if @blah < 10 ## escape loop
       p 'in recursion'
       generate box
     else

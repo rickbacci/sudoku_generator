@@ -1,50 +1,5 @@
 def solve_for_four box
 
-
-  def update_value num
-    if @puzzle[@array_element][@element_column] = 0
-      @puzzle[@array_element][@element_column] = num
-    end
-
-    @numbers_set << num
-    @numbers -= [num]
-  end
-
-
-  def clear_array bx, num
-    p "@puzzle[#{@array_element}][#{@element_column}] set to num: #{num}"
-    #p "this is in test method with #{num}"
-
-    p "box[#{@i}] set to empty?: #{[]}"  ### not right? Shows box element?
-    bx[@i] = []
-
-    bx.each do |b|
-      if b.include? num                                       
-        #p "delete the #{num}'s out of b #{b}"
-        b.delete(num)
-        #p "b#{b} after deleting #{num}"
-      end
-    end
-    puts
-    p "@box after all #{num}'s deleted"
-    p bx
-    puts
-  end
-  
-
-  def output_info
-    puts
-    p "numbers that were set this loop: #{@numbers_set}"
-
-    total_numbers_set = box0.select { |val| val != 0 }
-    p "total numbers in box that are set: #{total_numbers_set}"
-
-    p "numbers remaining to loop thru: #{@numbers - total_numbers_set}"
-    p "numbers remaining in box: #{@box}"
-    puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
-    puts
-  end
-
   p "Starting box"
   p @box = box
   puts
@@ -80,7 +35,7 @@ def solve_for_four box
             #p "num: #{num}"
             p "element: #{element} set because element had '(array.length == 4) && (empty? == false)'"
 
-            update_value num  # sets value in @puzzle
+            update_value num # sets value in @puzzle
             update_puzzle  #refreshes puzzle values
             clear_array(@box, num)  #removes num from 'box'
             #output_info
@@ -114,10 +69,5 @@ def solve_for_four box
     output_info
     @numbers_set = []
     @i += 1
-  end
-  if @box.flatten == []
-    p "All done!"
-  else
-    #gen2 box 
   end
 end
