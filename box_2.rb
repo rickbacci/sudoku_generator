@@ -4,47 +4,47 @@ def box2
 end
 
 
-def box2r0c0
+def box2r0c6
   @x - row0 - col6 - box2
 end
 
-def box2r0c1
+def box2r0c7
   @x - row0 - col7 - box2
 end
 
-def box2r0c2
+def box2r0c8
   @x - row0 - col8 - box2
 end
 
 
-def box2r1c0
+def box2r1c6
   @x - row1 - col6 - box2
 end
 
-def box2r1c1
+def box2r1c7
   @x - row1 - col7 - box2
 end
 
-def box2r1c2
+def box2r1c8
   @x - row1 - col8 - box2
 end
 
 
-def box2r2c0
+def box2r2c6
   @x - row2 - col6 - box2
 end
 
-def box2r2c1
+def box2r2c7
   @x - row2 - col7 - box2
 end
 
-def box2r2c2
+def box2r2c8
   @x - row2 - col8 - box2
 end
 
 
 def box_2_array
-  [box2r0c0, box2r0c1, box2r0c2,
-   box2r1c0, box2r1c1, box2r1c2,
-   box2r2c0, box2r2c1, box2r2c2]
+  [box2r0c6, box2r0c7, box2r0c8,
+   box2r1c6, box2r1c7, box2r1c8,
+   box2r2c6, box2r2c7, box2r2c8]
 end

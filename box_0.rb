@@ -4,23 +4,19 @@ def box0
 end
 
 
-## row 0 box 0
 def box0r0c0
   @x - row0 - col0 - box0
 end
-#p box0r1c0
 
 def box0r0c1
   @x - row0 - col1 - box0
 end
-#p box0r1c1
 
 def box0r0c2
   @x - row0 - col2 - box0
 end
 
 
-## row 1 box 0
 def box0r1c0
   @x - row1 - col0 - box0
 end
