@@ -1,11 +1,11 @@
 
 def box8
-  @box2 =  @puzzle[20] + @puzzle[ 23] + @puzzle[26]
+  @box2 =  @puzzle[20] + @puzzle[23] + @puzzle[26]
 end
 
 
 def box8r6c6
-  @x - row6 - col0 - box8
+  @x - row6 - col6 - box8
 end
 
 def box8r6c7
