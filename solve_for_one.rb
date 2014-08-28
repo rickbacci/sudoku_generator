@@ -1,14 +1,5 @@
 def solve_for_one box
 
-
-  
-
-  p "Starting box"
-  p @box = box
-  puts
-
-  # @array_element = 0
-  # @element_column = 0
   @numbers = [1,2,3,4,5,6,7,8,9]
   @i = 0
   @numbers_set = []
@@ -45,7 +36,8 @@ def solve_for_one box
 
           elsif (element.length == 1) && ( element.include?(num) )
             #p "num: #{num}"
-            p "element: #{element} set because element had '(array.length == 1) && (empty? == false)'"
+            p "element: #{element} set because element had" + 
+              " '(array.length == 1) && (empty? == false)'"
 
             update_value num  # sets value in @puzzle
             update_puzzle  #refreshes puzzle values
@@ -69,7 +61,7 @@ def solve_for_one box
     puts
 
     box_location
-    
+
     output_info
     @numbers_set = []
     @i += 1
