@@ -21,16 +21,8 @@ require_relative 'solve_for_four'
 
 require_relative 'print_puzzle'
 
-
-# p "Starting box"
-#   p @box = box
-#   puts
-
-  # @array_element = 0
-  # @element_column = 0
-  # @numbers = [1,2,3,4,5,6,7,8,9]
-  # @i = 0
-  # @numbers_set = []
+  
+  
 
 
 
@@ -103,10 +95,16 @@ def fewest_remaining? values
       @amt_remaining = @flat.count(num)
     elsif (@flat.count(num) < @amt_remaining)
       @lowest_remaining = num
+
       @amt_remaining = @flat.count(num)
     end
   end
   p "There are only #{@amt_remaining} number #{@lowest_remaining}'s left."
+  ## @lowest remaining is the actual number
+  @lowest_remaining ######################################################### check this!!!
+  ## @amt_remaining is how many are remaining
+  @amt_remaining
+
 end
 
 def box_location
@@ -155,14 +153,22 @@ end
 def generate box
   @box = box
 
-  find_lengths box
-  x = fewest_remaining? box
+  @numbers = [1,2,3,4,5,6,7,8,9]
+  @i = 0
+  @numbers_set = []
 
+  find_lengths box
+
+   @few = fewest_remaining? box
+
+    p "fewest remaining"
+    p @few
+  p "*******************************************************************************************"
   starting_box
 
-  if @element_lengths.include? 1 || x == 1
+  if @element_lengths.include? 1 || @few == 0
     solve_for_one box
-  elsif @element_lengths.include? 2 || x == 2
+  elsif @element_lengths.include? 2 || @few == 2
     
     solve_for_two box
   elsif @element_lengths.include? 3
@@ -200,21 +206,18 @@ end
 
 generate box_0_array
 
-@start = 2
-@array_element = 2
-@element_column = 0
+ @start = 2
+ @array_element = 2
 
-generate box_2_array
+ generate box_2_array
 
-@start = 18
-@array_element = 18
-@element_column = 0
+ @start = 18
+ @array_element = 18
 
-generate box_6_array
+ generate box_6_array
 
- @start = 20
- @array_element = 20
- @element_column = 0
+  @start = 20
+  @array_element = 20
 
  generate box_8_array
 
