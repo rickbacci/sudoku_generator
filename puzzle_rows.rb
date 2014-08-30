@@ -35,14 +35,3 @@ def row8
   @row8 = @puzzle[24] + @puzzle[25] + @puzzle[26]
 end
 
-def update_puzzle
-  row0
-  row1
-  row2
-  row3
-  row4
-  row5
-  row6
-  row7
-  row8
-end

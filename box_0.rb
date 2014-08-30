@@ -44,7 +44,7 @@ end
 
 
 def box_0_array
-  [box0r0c0, box0r0c1, box0r0c2,
-   box0r1c0, box0r1c1, box0r1c2,
-   box0r2c0, box0r2c1, box0r2c2]
+  @box_0_array =  [box0r0c0, box0r0c1, box0r0c2,
+                   box0r1c0, box0r1c1, box0r1c2,
+                   box0r2c0, box0r2c1, box0r2c2]
 end

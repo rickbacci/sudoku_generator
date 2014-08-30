@@ -1,6 +1,8 @@
 def solve_for_four box
   
   @box.each do |element|
+    break if @wait == 1
+
 
     @test = @box.flatten
     puts "@puzzle[#{@array_element}][#{@element_column}] -- Begin"
@@ -12,11 +14,11 @@ def solve_for_four box
         # @test = @box.flatten
 
         if ( element.include?(num) )
-          p "@box element: #{element}"
+          #p "@box element: #{element}"
           #p "num: #{num}"
           @test = @box.flatten
 
-          p "Checking number: #{num}...there were #{@test.count(num)} found"
+          #p "Checking number: #{num}...there were #{@test.count(num)} found"
 
           
 

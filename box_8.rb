@@ -44,7 +44,7 @@ end
 
 
 def box_8_array
-  [box8r6c6, box8r6c7, box8r6c8,
-   box8r7c6, box8r7c7, box8r7c8,
-   box8r8c6, box8r8c7, box8r8c8]
+  @box_8_array =  [box8r6c6, box8r6c7, box8r6c8,
+                   box8r7c6, box8r7c7, box8r7c8,
+                   box8r8c6, box8r8c7, box8r8c8]
 end

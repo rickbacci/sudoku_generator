@@ -1,11 +1,12 @@
 def solve_for_three box
 
-  @numbers_set = []
+  #@numbers_set = []
 
   @box.each do |element|
+    break if @wait == 1
 
     @test = @box.flatten
-    puts "@puzzle[#{@array_element}][#{@element_column}] -- Begin"
+    puts "@puzzle[#{@array_element}][#{@element_column}] -- Begin------------------------------------------"
 
     if element != []
       @numbers.each do |num|
@@ -14,18 +15,18 @@ def solve_for_three box
         # @test = @box.flatten
 
         if ( element.include?(num) )
-          p "@box element: #{element}"
+          #p "@box element: #{element}"
           #p "num: #{num}"
           @test = @box.flatten
 
-          p "Checking number: #{num}...there were #{@test.count(num)} found"
+          #p "Checking number: #{num}...there were #{@test.count(num)} found"
 
           if (element.length == 3) && ( element.include?(num) )
             #p "num: #{num}"
             p "element: #{element} set because element had '(array.length == 3) && (empty? == false)'"
 
             update_value num  # sets value in @puzzle
-            update_puzzle  #refreshes puzzle values
+            #update_puzzle  #refreshes puzzle values
             clear_array(@box, num)  #removes num from 'box'
             #output_info
 
@@ -42,17 +43,12 @@ def solve_for_three box
       p "Value already set to: #{@puzzle[@array_element][@element_column]}"
     end
 
-    puts "@puzzle[#{@array_element}][#{@element_column}] -- End"
+    puts "@puzzle[#{@array_element}][#{@element_column}] -- End------------------------------------------"
     puts
 
     box_location
     output_info
     @numbers_set = []
     @i += 1
-  end
-  if @box.flatten == []
-    p "All done!"
-  else
-    #gen2 box 
   end
 end
