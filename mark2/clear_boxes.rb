@@ -7,7 +7,7 @@ def clear_boxes
     boxes[i].each do |p|
 
       if p.size == 1
-        p "found a #{p[0]} in box #{i}"
+        #p "found a #{p[0]} in box #{i}"
         num = p[0]
 
         boxes[i].each do |p|

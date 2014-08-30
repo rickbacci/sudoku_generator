@@ -4,7 +4,7 @@ def clear_rows
     @new_puz[i].each do |p|
 
       if p.size == 1
-        p "found a #{p[0]} in row #{i}"
+        #p "found a #{p[0]} in row #{i}"
         num = p[0]
 
         @new_puz[i].each do |p|
