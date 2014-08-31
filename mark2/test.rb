@@ -1,10 +1,5 @@
 require_relative 'empty_matrix'
 
-require_relative 'puzzle_boxes'
-require_relative 'puzzle_columns'
-require_relative 'puzzle_rows'
-
-require_relative 'set_variables'
 require_relative 'clear_rows'
 require_relative 'clear_boxes'
 require_relative 'clear_columns'
@@ -13,16 +8,13 @@ require_relative 'set_box0'
 require_relative 'set_box4'
 require_relative 'set_box8'
 
-
-set_variables
-
 set_box0
 set_box4
 set_box8
 
 clear_rows
-clear_columns
 clear_boxes
+clear_columns
 
 size1 = 0
 size2 = 0
