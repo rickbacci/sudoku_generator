@@ -1,16 +1,13 @@
 
 def clear_rows
-  (0..8).each do |row|
-    @new_puz[row].each do |p|
-
-      if p.size == 1
-        #p "found a #{p[0]} in row #{i}"
-        num = p[0]
-
-        @new_puz[row].each do |p|
-
-          unless p.size == 1
-            p.delete num if p.include? num
+  (0..8).each do |row_number|
+    @new_puz[row_number].each do |row_val|
+      if row_val.size == 1
+        num = row_val[0]
+        p "found a #{num} in row #{row_number}"
+        @new_puz[row_number].each do |row_val|
+          unless row_val.size == 1
+            row_val.delete num if row_val.include? num
           end
         end
       end
