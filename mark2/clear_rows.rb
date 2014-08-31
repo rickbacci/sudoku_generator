@@ -10,9 +10,7 @@ def clear_rows
         @new_puz[i].each do |p|
 
           unless p.size == 1
-            if p.include? (num)
-              p.delete (num)
-            end
+            p.delete num if p.include? num
           end
         end
       end

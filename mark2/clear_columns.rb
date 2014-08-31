@@ -12,9 +12,7 @@ def clear_columns
 
         num = c[0]
         #p "found a #{c[0]} in column #{i}"
-
         col.each do |c|
-          
           unless c.size == 1
             c.delete (num) if c.include? (num)
           end
