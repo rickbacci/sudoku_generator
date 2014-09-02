@@ -16,11 +16,11 @@ def clear_boxes
   (0..8).each do |box_number|
     boxes.each do |box|
       box.each do |b| 
-        if b.size == 1
-          num = b[0]
+        if b.is_a? Integer
+          num = b
           #p "found a #{num} in box #{box_number}"
           box.each do |p|
-            unless p.size == 1
+            unless p.is_a? Integer
               p.delete (num) if p.include? (num)
             end
           end
