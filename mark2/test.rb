@@ -79,7 +79,7 @@ def solve_for_one_remaining_number_in_column
       @new_puz.each_with_index do |row, index|
         unless row[col].is_a? Integer
           if row[col].size == 1
-            p @new_puz[index][col] = @new_puz[index][col][0]
+            @new_puz[index][col] = @new_puz[index][col][0]
             @loop_once = 1
           elsif @loop_once == 0 && (row[col].include? @num_in_column_to_set)
             @new_puz[index][col] = @num_in_column_to_set
@@ -111,17 +111,14 @@ def solve_for_box rows, columns
           #p @flat_array
 
         element = @new_puz[row][col]
-        p @flat_array.count(num) == 1
-        p "row: #{row} column: #{col} element: #{@new_puz[row][col]}"
-        p "counting #{num}'s...there were #{@flat_array.count(num)} found"
+        #p @flat_array.count(num) == 1
+        #p "row: #{row} column: #{col} element: #{@new_puz[row][col]}"
+        #p "counting #{num}'s...there were #{@flat_array.count(num)} found"
         if element.is_a? Array
           if element.is_a?(Array) && (element.size == 1)
             @new_puz[row][col] = @new_puz[row][col][0]
             @loop_once = 1
           elsif (@flat_array.count(num) == 1) && element.include?(num)
-            
-            p 'in here'
-            p num
             @new_puz[row][col] = num if @loop_once == 0
             @loop_once = 1
           end
@@ -129,9 +126,41 @@ def solve_for_box rows, columns
       end
     end
   end
+end
 
 
 
+
+def solve_boxes_for_one
+
+  solve_for_box (0..2), (0..2)
+  clear_all
+
+  solve_for_box (0..2), (3..5)
+  clear_all
+
+  solve_for_box (0..2), (6..8)
+  clear_all
+
+
+  solve_for_box (3..5), (0..2)
+  clear_all
+
+  solve_for_box (3..5), (3..5)
+  clear_all
+
+  solve_for_box (3..5), (6..8)  
+  clear_all
+
+
+  solve_for_box (6..8), (0..2)
+  clear_all
+
+  solve_for_box (6..8), (3..5)
+  clear_all
+
+  solve_for_box (6..8), (6..8)
+  clear_all
 
 end
 
@@ -161,25 +190,80 @@ end
 ## row 3,4,5
 ## col 0,1,2
 
-# should get the 2 in row4 col2
-p solve_for_box (3..5), (0..2)
+# # should get the 2 in row4 col2
+# p solve_for_box (3..5), (0..2)
+# clear_all
+
+# #should get the [3] in row3 col1
+# p solve_for_box (3..5), (0..2)
+# clear_all
+
+# # row4 col0 solve for single 6
+# p solve_for_box (3..5), (0..2)
+# clear_all
+
+
+solve_boxes_for_one
+solve_for_one_remaining_number_in_row ## works
+solve_for_one_remaining_number_in_column
+
+solve_boxes_for_one
+solve_for_one_remaining_number_in_row ## works
+solve_for_one_remaining_number_in_column
+
+solve_boxes_for_one
+solve_for_one_remaining_number_in_row ## works
 clear_all
 
-#should get the [3] in row3 col1
-p solve_for_box (3..5), (0..2)
+solve_for_one_remaining_number_in_column
 clear_all
 
-# row4 col0 solve for single 6
-p solve_for_box (3..5), (0..2)
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_boxes_for_one
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+
+solve_for_one_remaining_number_in_row ## works
+clear_all
+
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+solve_for_one_remaining_number_in_row ## works
+clear_all
+
+solve_for_one_remaining_number_in_column
+clear_all
+solve_for_one_remaining_number_in_column
+clear_all
+
+solve_boxes_for_one
+clear_all
+solve_boxes_for_one
 clear_all
 
 
+solve_boxes_for_one
+clear_all
 
-
- 
-
-
-
+solve_for_one_remaining_number_in_row ## works
+clear_all
 
 
 puts
@@ -187,11 +271,6 @@ puts
 
 # p "box 0"
 #     p self.send("box" << (0.to_s))
-
-
-
-
-
 
 
 
