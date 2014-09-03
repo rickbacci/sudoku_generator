@@ -90,7 +90,7 @@ end
 # generate_puzzle
 # generate_puzzle
 puts
-p total_numbers_remaining?
+total_numbers_remaining?
 
 puts
 @new_puz.each { |puzzle| p puzzle }

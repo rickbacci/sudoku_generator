@@ -1,28 +1,23 @@
 def total_numbers_remaining?
   @number_totals_by_row = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  
-  row_num = 0
-  
-  @new_puz.each do |row|
-    @temp = []
-    row.each do |r|
-      unless r.is_a? Integer
-        @temp << r
-      end
 
-      flat = @temp.flatten
-      (1..9).each do |num|
-        total_num_in_row = flat.count(num)
-        #p "There are a total of #{total_num_in_row}  #{num}'s in row #{row_num}"
-        #p row_num
-        @number_totals_by_row[row_num] += total_num_in_row
-      end
-      if row_num == 8
-        row_num = 1
-      else
-        row_num += 1
+  temp_array = []
+
+  @new_puz.each do |row|
+    row.each do |element|
+      unless element.is_a? Integer
+        temp_array << element
+        (1..9).each_with_index do |num, index|
+          #p element
+          if element.flatten.include? num
+            #p "element included"
+            @number_totals_by_row[index] += 1
+          end
+        end
       end
     end
   end
-  @number_totals_by_row
+  @number_totals_by_row.each_with_index do |number, index|
+    p "There are #{number} #{index}'s remaining in the puzzle"
+  end
 end
