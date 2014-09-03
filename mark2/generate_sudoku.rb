@@ -73,8 +73,14 @@ def generate_puzzle
   puts
   p "end of recursion"
   puts
+
+  done = @new_puz.flatten.inject(0) { |total, value| total + value }
+
   if @loops > 50
     p "stopped after 50 recursions"
+    return
+  elsif done == 405
+    p "puzzle solved after #{@loops} recursions"
     return
   else
    generate_puzzle
@@ -87,3 +93,4 @@ puts
 @new_puz.each { |puzzle| p puzzle }
 
 p valid_puzzle?
+
