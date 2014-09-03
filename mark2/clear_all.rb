@@ -5,12 +5,13 @@ def clear_all
   clear_boxes
 end
 
+
 def clear_rows
-  (0..8).each do |row_number|
-    @new_puz[row_number].each do |row_val|
+  (0..8).each do |row|
+    @new_puz[row].each do |row_val|
       if row_val.is_a? Integer
         num = row_val
-        @new_puz[row_number].each do |row_val|
+        @new_puz[row].each do |row_val|
           unless row_val.is_a? Integer
             row_val.delete num if row_val.include? num
           end
@@ -20,21 +21,21 @@ def clear_rows
   end
 end
 
+
 def clear_columns
-  (0..8).each do |col|
-    @new_puz.each do |puz|
-      if puz[col].is_a? Integer
-        num = puz[col]
-        @new_puz.each do |p|
-          unless p[col].is_a? Integer
-            p[col].delete (num) if p[col].include? (num)
+  (0..8).each do |column|
+    @new_puz.each do |row|
+      if row[column].is_a? Integer
+        num = row[column]
+        @new_puz.each do |r|
+          unless r[column].is_a? Integer
+            r[column].delete (num) if r[column].include? (num)
           end
         end
       end
     end
   end
 end
-
 
 
 def clear_boxes
