@@ -3,9 +3,6 @@
 @size3 = 0
 @size4 = 0
 
-
-
-
 def check_lengths
   @size1, @size2, @size3, @size4 = 0,0,0,0
 
