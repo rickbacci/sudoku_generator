@@ -1,3 +1,42 @@
+
+def clear_all
+  clear_rows
+  clear_columns
+  clear_boxes
+end
+
+def clear_rows
+  (0..8).each do |row_number|
+    @new_puz[row_number].each do |row_val|
+      if row_val.is_a? Integer
+        num = row_val
+        @new_puz[row_number].each do |row_val|
+          unless row_val.is_a? Integer
+            row_val.delete num if row_val.include? num
+          end
+        end
+      end
+    end
+  end
+end
+
+def clear_columns
+  (0..8).each do |col|
+    @new_puz.each do |puz|
+      if puz[col].is_a? Integer
+        num = puz[col]
+        @new_puz.each do |p|
+          unless p[col].is_a? Integer
+            p[col].delete (num) if p[col].include? (num)
+          end
+        end
+      end
+    end
+  end
+end
+
+
+
 def clear_boxes
 
   @box0 = @new_puz[0][0..2] + @new_puz[1][0..2] + @new_puz[2][0..2]
@@ -18,7 +57,6 @@ def clear_boxes
       box.each do |b| 
         if b.is_a? Integer
           num = b
-          #p "found a #{num} in box #{box_number}"
           box.each do |p|
             unless p.is_a? Integer
               p.delete (num) if p.include? (num)
@@ -29,3 +67,4 @@ def clear_boxes
     end
   end
 end
+

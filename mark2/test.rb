@@ -1,10 +1,8 @@
 require_relative 'empty_matrix'
 
-require_relative 'clear_rows'
-require_relative 'clear_boxes'
-require_relative 'clear_columns'
-
 require_relative 'set_boxes'
+require_relative 'clear_all'
+
 
 require_relative 'check_lengths'
 require_relative 'total_numbers_remaining'
@@ -12,18 +10,12 @@ require_relative 'total_numbers_remaining'
 require_relative 'solve_for_1_in_row'
 
 
+## Generates random numbers in boxes 0, 4, and 8
+set_boxes 
 
-set_boxes ## Generates random numbers in boxes 0, 4, and 8
+## loops thru boxes, rows, and columns and clears numbers that are not possibilites
+clear_all 
 
- 
-
-def clear_all
-  clear_rows
-  clear_boxes
-  clear_columns
-end
-
-clear_all
 @loop_once = 0
 
 
