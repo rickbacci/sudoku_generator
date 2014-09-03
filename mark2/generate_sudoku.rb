@@ -28,11 +28,13 @@ def valid_puzzle?
       end
     end
   end
+  puts
   p "total is #{total}"
   if total == 405
-    return true
+
+    return "Valid puzzle!"
   else
-    return false
+    return "Puzzle not valid!"
   end
 end
 
