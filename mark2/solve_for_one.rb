@@ -1,4 +1,15 @@
 
+def solve_for_one
+  solve_for_one_rows
+  clear_all
+  solve_for_one_columns
+  clear_all
+  solve_for_one_boxes
+  clear_all
+end
+
+
+
 def solve_for_one_rows
   @loop_once = 0
 
@@ -12,15 +23,21 @@ def solve_for_one_rows
         end
       end
       flat = temp.flatten.count(num)
-      #p "There are #{flat} #{num}'s remaining"
        if flat == 1
+         puts
+         p "There are #{flat} #{num}'s remaining"
+         puts
          @one_num_remaining = num  
        end
 
+
       @new_puz[row_number].each_with_index do |row, index|
         unless row.is_a? Integer
+          
+
+
           if (row.include? @one_num_remaining) #&& @loop_once == 0
-            @new_puz[row_number][index] = @one_num_remaining
+            p @new_puz[row_number][index] = @one_num_remaining
             @loop_once = 1
             return
           end
