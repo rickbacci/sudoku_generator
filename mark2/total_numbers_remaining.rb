@@ -8,9 +8,7 @@ def total_numbers_remaining?
       unless element.is_a? Integer
         temp_array << element
         (1..9).each_with_index do |num, index|
-          #p element
           if element.flatten.include? num
-            #p "element included"
             @number_totals_by_row[index] += 1
           end
         end
@@ -18,6 +16,6 @@ def total_numbers_remaining?
     end
   end
   @number_totals_by_row.each_with_index do |number, index|
-    p "There are #{number} #{index}'s remaining in the puzzle"
+    p "There are #{number} #{index + 1}'s remaining in the puzzle"
   end
 end

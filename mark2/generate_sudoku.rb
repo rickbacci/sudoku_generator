@@ -4,7 +4,7 @@ require_relative 'set_boxes'
 require_relative 'clear_all'
 
 
-require_relative 'check_lengths'
+require_relative 'check_sizes'
 require_relative 'total_numbers_remaining'
 
 require_relative 'solve_for_one'
@@ -14,24 +14,39 @@ require_relative 'solve_for_four'
 
 
 ## Generates random numbers in boxes 0, 4, and 8
-set_boxes 
+set_boxes
 
 ## loops thru boxes, rows, and columns and clears numbers that are not possibilites
 clear_all
 
-## shows lengths of starting matrix
-check_lengths
+def valid_puzzle?
+  total = 0 ## should be 405
+  @new_puz.each do |row|
+    row.each do |element|
+      unless element.is_a? Array
+        total += element
+      end
+    end
+  end
+  p "total is #{total}"
+  if total == 405
+    return true
+  else
+    return false
+  end
+end
 
 
+@loops = 0
 
 def generate_puzzle
-  puts
+  @loops += 1
   p "start of recursion"
+  puts
+  check_sizes
   puts
   @loop_once = 0
   
-  solve_for_one
-
   if @size1 > 0
     p 'in solve_for_one'
     solve_for_one
@@ -45,52 +60,28 @@ def generate_puzzle
     solve_for_three
 
   elsif @size4 > 0
-    p 'in size4'
+    p 'in solve_for_four'
     solve_for_four
   end
   clear_all
   puts
-  check_lengths
+  check_sizes
+  puts
+  total_numbers_remaining?
   puts
   p "end of recursion"
   puts
+  if @loops > 50
+    p "stopped after 50 recursions"
+    return
+  else
+   generate_puzzle
+  end
 end
 
-# generate_puzzle
-# generate_puzzle
-
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-# generate_puzzle
-puts
-total_numbers_remaining?
+ generate_puzzle
 
 puts
 @new_puz.each { |puzzle| p puzzle }
+
+p valid_puzzle?

@@ -30,15 +30,11 @@ def solve_for_one_rows
          @one_num_remaining = num  
        end
 
-
       @new_puz[row_number].each_with_index do |row, index|
         unless row.is_a? Integer
-          
-
-
-          if (row.include? @one_num_remaining) #&& @loop_once == 0
+          if (row.include? @one_num_remaining)
             p @new_puz[row_number][index] = @one_num_remaining
-            @loop_once = 1
+            clear_all
             return
           end
         end
@@ -74,10 +70,10 @@ def solve_for_one_columns
         unless row[col].is_a? Integer
           if row[col].size == 1
             @new_puz[index][col] = @new_puz[index][col][0]
-            @loop_once = 1
-          elsif @loop_once == 0 && (row[col].include? @num_in_column_to_set)
+         # elsif @loop_once == 0 && (row[col].include? @num_in_column_to_set)
+          elsif (row[col].include? @num_in_column_to_set)
+            p "what does this do?"
             @new_puz[index][col] = @num_in_column_to_set
-            @loop_once = 1
           end 
         end
       end
@@ -126,19 +122,18 @@ def solve_for_box rows, columns
   (1..9).each do |num|
     rows.each do |row|
       columns.each do |col|
-          #p @flat_array
-
+         #p @flat_array
         element = @new_puz[row][col]
         #p @flat_array.count(num) == 1
         #p "row: #{row} column: #{col} element: #{@new_puz[row][col]}"
         #p "counting #{num}'s...there were #{@flat_array.count(num)} found"
-        if element.is_a? Array
-          if element.is_a?(Array) && (element.size == 1)
+        if element.is_a?(Array)
+          if element.size == 1
             @new_puz[row][col] = @new_puz[row][col][0]
-            @loop_once = 1
+            clear_all
           elsif (@flat_array.count(num) == 1) && element.include?(num)
-            @new_puz[row][col] = num if @loop_once == 0
-            @loop_once = 1
+            @new_puz[row][col] = num
+            clear_all
           end
         end
       end

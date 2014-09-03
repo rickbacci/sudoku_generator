@@ -1,11 +1,11 @@
 
-def check_lengths
+def check_sizes
   @solved, @size1, @size2, @size3, @size4, @size5, @size6 = 0, 0, 0, 0, 0, 0, 0
 
 
   @new_puz.each do |row|
     row.each do |element|
-      if element.size == 1
+      if element.size == 1 
         @size1 += 1
       elsif element.size == 2
         @size2 += 1

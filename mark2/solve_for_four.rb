@@ -9,9 +9,8 @@ def solve_for_four
         @loop_once = 1
         clear_all
 
-        break if @loop_once == 1
+        return
       end
-      break if @loop_once == 1
       column += 1
     end
   end
