@@ -7,62 +7,90 @@ require_relative 'clear_all'
 require_relative 'check_lengths'
 require_relative 'total_numbers_remaining'
 
-require_relative 'solve_for_1_in_row'
+require_relative 'solve_for_one'
 require_relative 'solve_for_two'
 require_relative 'solve_for_three'
-
+require_relative 'solve_for_four'
 
 
 ## Generates random numbers in boxes 0, 4, and 8
 set_boxes 
 
 ## loops thru boxes, rows, and columns and clears numbers that are not possibilites
-clear_all 
+clear_all
 
-@loop_once = 0
+## shows lengths of starting matrix
+check_lengths
 
 
 
-
-def finish_puzzle
+def generate_puzzle
+  puts
   p "start of recursion"
-  check_lengths
+  puts
   @loop_once = 0
   
-  if @size1 > 0
-    solve_boxes_for_one
-    clear_all
+  solve_for_one
 
-    solve_for_one_remaining_number_in_row ## works
-    clear_all
-    solve_for_one_remaining_number_in_column
-    clear_all
-  
-  elsif @size2 > 0 || total_numbers_remaining? == 2
+  if @size1 > 0
+    p 'in solve_for_one'
+    solve_for_one
+
+  elsif @size2 > 0 #|| total_numbers_remaining? == 2
     p 'in solve_for_two'
     solve_for_two
+
   elsif @size3 > 0
     p 'in solve_for_three'
     solve_for_three
+
   elsif @size4 > 0
     p 'in size4'
+    solve_for_four
   end
   clear_all
-  p "end of recursion"
+  puts
   check_lengths
+  puts
+  p "end of recursion"
+  puts
 end
 
-# finish_puzzle
-# finish_puzzle
-# finish_puzzle
-# finish_puzzle
-# finish_puzzle
-# finish_puzzle
-# finish_puzzle
+# generate_puzzle
+# generate_puzzle
 
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+# generate_puzzle
+puts
+p total_numbers_remaining?
 
 puts
-@new_puz.each { |a| p a }
-
-# p "box 0"
-#     p self.send("box" << (0.to_s))
+@new_puz.each { |puzzle| p puzzle }
