@@ -37,7 +37,7 @@ def valid_puzzle?
 
     return "Valid puzzle!"
   else
-    return "Puzzle not valid!"
+    return "Invalid puzzle!"
   end
 end
 
@@ -48,9 +48,9 @@ def generate_puzzle
   p "start of recursion"
   puts
   total_numbers_remaining?
-  puts
+  #puts
   check_sizes
-  puts
+  #puts
   @loop_once = 0
   
   if (@size1 > 0) || @number_totals_by_row.include?(1)
@@ -72,14 +72,16 @@ def generate_puzzle
   clear_all
   puts
   check_sizes
-  puts
+  #puts
   total_numbers_remaining?
 
-  puts
+  #puts
   p "end of recursion"
-  puts
+  #puts
 
+  #done = @new_puz.inject(0) { |total, value| total + value }
   done = @new_puz.flatten.inject(0) { |total, value| total + value }
+
   #solve_for_one
 
   @loops += 1
@@ -87,9 +89,9 @@ def generate_puzzle
   if @loops > 75
     p "stopped after 75 recursions"
     return
-  elsif done == 405
+  #elsif done == 405 #&& #(done == done_flat)
     p "puzzle solved after #{@loops} recursions"
-    return
+   # return
   else
    generate_puzzle
   end
