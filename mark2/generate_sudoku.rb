@@ -45,8 +45,8 @@ end
 @loops = 0
 
 def generate_puzzle
-  p "start of recursion"
-  puts
+  #p "start of recursion"
+  #puts
   total_numbers_remaining?
   #puts
   check_sizes
@@ -76,7 +76,7 @@ def generate_puzzle
   total_numbers_remaining?
 
   #puts
-  p "end of recursion"
+  #p "end of recursion"
   #puts
 
   #done = @new_puz.inject(0) { |total, value| total + value }
