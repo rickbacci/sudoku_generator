@@ -16,6 +16,6 @@ def total_numbers_remaining?
     end
   end
   @number_totals_by_row.each_with_index do |number, index|
-    p "There are #{number} #{index + 1}'s remaining in the puzzle"
+    #p "There are #{number} #{index + 1}'s remaining in the puzzle"
   end
 end

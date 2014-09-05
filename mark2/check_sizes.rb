@@ -25,10 +25,10 @@ def check_sizes
 
   lengths = [@size1, @size2, @size3, @size4, @size5, @size6]
 
-  p "#{@solved} numbers have been solved"
-  puts
+  #p "#{@solved} numbers have been solved"
+  #puts
 
   lengths.each_with_index do |value, index|
-    p "There are #{value} elements with a length of #{ index + 1 }"
+    #p "There are #{value} elements with a length of #{ index + 1 }"
   end
 end
