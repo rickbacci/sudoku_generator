@@ -24,13 +24,17 @@ def solve_for_one_rows
       row.each_with_index do |element, col_num| 
         unless element.is_a? Integer
           if element.include?(num) && flat_row.count(num) == 1
+
             @new_puz[row_num][col_num] = num
-            @history << "puzzle[#{row_num}][#{col_num}]set to #{num} in one remaining solve for one rows"
+            @history << "puzzle[#{row_num}][#{col_num}] set from #{element} to #{num} in solve_for_one_rows(1 remaining)"
             clear_all
+
           elsif element.include? (num) && element.size == 1
+
             @new_puz[row_num][col_num] = num
-            @history << "puzzle[#{row_num}][#{col_num}]set to #{num} in arr.size == 1 solve for one rows"
+            @history << "puzzle[#{row_num}][#{col_num}] set from #{element} to #{num} in solve_for_one_rows(arr.size == 1)"
             clear_all
+            
           end
         end
       end
@@ -59,13 +63,17 @@ def solve_for_one_columns
       column_array.each_with_index do |element, row|
         unless element.is_a? Integer
           if element.include?(num) && flat_column_array.count(num) == 1
+
             @new_puz[row][column] = num
-            @history << "puzzle[#{row}][#{column}]set to #{num} in one remaining solve for one columns"
+            @history << "puzzle[#{row}][#{column}] set from #{element} to #{num} in solve_for_one_columns(1 remaining)"
             clear_all
+
           elsif element.include?(num) && element.size == 1
+
             @new_puz[row][column] = num
-            @history << "puzzle[#{row}][#{column}]set to #{num} in arr.size == 1 solve for one columns"
+            @history << "puzzle[#{row}][#{column}] set from #{element} to #{num} in solve_for_one_columns(arr.size == 1)"
             clear_all
+
           end
         end
       end
@@ -121,15 +129,15 @@ def solve_for_box rows, columns
         if element.is_a?(Array) && element.include?(num)
           
           if element.size == 1
-            
+
             @new_puz[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set(arr.size == 1) from #{element} to #{element[0]} in solve_for_one boxes"
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{element[0]} in solve_for_one_boxes(arr.size == 1)"
             clear_all
 
           elsif flat_array.count(num) == 1
 
             @new_puz[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set(one remaining) from #{element} to #{num} in solve_for_one boxes"
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one_boxes(one remaining)"
             clear_all
 
           end
