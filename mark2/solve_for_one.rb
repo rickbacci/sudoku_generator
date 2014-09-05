@@ -20,25 +20,23 @@ def solve_for_one_rows
 
   (1..9).each do |num|
     @new_puz.each_with_index do |row, row_num|
-      flat_row = []
-      row.each_with_index do |element, col_num|
-        flat_row << element unless element.is_a?(Integer)
 
-        if element.is_a?(Array) 
-          if (element.size == 1) && (element.include? (num))
-            @new_puz[row_num][col_num] = num
-            @history << "set in arr.size == 1 solve for one"
-          end
-        end
+      flat_row = []
+
+      row.each_with_index do |element, col_num|
+        flat_row << element unless element.is_a? Integer
       end
+
       flat_row = flat_row.flatten
       
       row.each_with_index do |element, col_num| 
         unless element.is_a? Integer
-          if (flat_row.count(num) == 1) && (element.include?(num))
+          if element.include?(num) && flat_row.count(num) == 1
             @new_puz[row_num][col_num] = num
-            @history << "set in one remaining == 1 solve for one"
-
+            @history << "puzzle[#{row_num}][#{col_num}]set to #{num} in one remaining solve for one"
+          elsif (element.size == 1) && (element.include? (num))
+            @new_puz[row_num][col_num] = num
+            @history << "puzzle[#{row_num}][#{col_num}]set to #{num} in arr.size == 1 solve for one"
           end
         end
       end
@@ -46,39 +44,7 @@ def solve_for_one_rows
   end
 end
 
-  # (0..8).each do |row_number|
-  #   #column = 0
-  #   (1..9).each do |num|
-  #     temp = []
-  #     @new_puz[row_number].each do |row|
-  #       unless row.is_a? Integer
-  #         temp << row 
-  #       end
-  #     end
-  #     flat = temp.flatten.count(num)
-  #      if flat == 1
-  #        puts
-  #        p "There are #{flat} #{num}'s remaining"
-  #        puts
-  #        @one_num_remaining = num  
-  #      end
-
-  #     @new_puz[row_number].each_with_index do |row, column|
-  #       unless row.is_a? Integer
-  #         if (row.include? @one_num_remaining)
-  #           p @new_puz[row_number][column] = @one_num_remaining
-
-  #             #@history << total_numbers_remaining?
-  #           @history << "puzzle[#{row_number}][#{column}] set to #{@one_num_remaining} in solve_for_one rows for 1 number remaining"
-  #           clear_all
-  #           return
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
-#end
-
+  
 
 def solve_for_one_columns
   @loop_once = 0
