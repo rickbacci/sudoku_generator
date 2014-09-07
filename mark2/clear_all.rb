@@ -1,29 +1,92 @@
 
 def clear_all
   clear_rows
-  clear_columns
-  clear_boxes
+  #clear_columns
+  #clear_boxes
 end
 
+# def delete_values value, num
+#   value.each do |row_val|
+#     unless row_val.is_a? Integer
+#       row_val.delete num if row_val.include? num
+#     end
+#   end
+# end
 
 def clear_rows
-  (0..8).each do |row|
-    @new_puz[row].each do |row_val|
-      if row_val.is_a? Integer
-        num = row_val
-        @new_puz[row].each do |row_val|
-          unless row_val.is_a? Integer
-            row_val.delete num if row_val.include? num
+
+  set_row_variables
+
+  @rows = [@row0, @row1, @row2, @row3, @row4, @row5, @row6, @row7, @row8]
+
+  
+  # (0..8).each do |row_number|
+  #   @rows.each do |row|
+
+  #     row.each do |r| 
+  #       p row
+  #       if r.is_a? Integer
+  #         num = r
+
+  #         delete_values row, num
+  #         # box.each do |p|
+  #         #   unless p.is_a? Integer
+  #         #     p.delete (num) if p.include? (num)
+  #         #   end
+  #         # end
+  #       end
+  #     end
+  #   end
+  # end
+
+
+
+
+
+
+  @rows.each_with_index do |row_number, index|
+    row_number.each do |element|
+      p element
+      if element.is_a?(Integer)
+        number = element
+
+        row_number.each do |value|
+          unless value.is_a?(Integer)
+            value.delete(number) if value.include?(number)
           end
         end
       end
     end
   end
+
+
+
+  # (0..8).each do |row|                                     
+  #   @new_puz[row].each do |row_val|                       
+  #     if row_val.is_a? Integer
+  #       num = row_val
+
+  #       delete_values @new_puz[row], num
+        
+  #     end
+  #   end
+  # end
 end
 
 
 def clear_columns
+
+  set_column_variables
+
+  columns = [@col0, @col1, @col2, @col3, @col4, @col5, @col6, @col7, @col8]
+
+
   (0..8).each do |column|
+    column_array = []
+    @new_puz.each do |row|
+      column_array << row[column]
+    end
+
     @new_puz.each do |row|
       if row[column].is_a? Integer
         num = row[column]
@@ -39,17 +102,8 @@ end
 
 
 def clear_boxes
-
-  @box0 = @new_puz[0][0..2] + @new_puz[1][0..2] + @new_puz[2][0..2]
-  @box1 = @new_puz[0][3..5] + @new_puz[1][3..5] + @new_puz[2][3..5]
-  @box2 = @new_puz[0][6..8] + @new_puz[1][6..8] + @new_puz[2][6..8]
-  @box3 = @new_puz[3][0..2] + @new_puz[4][0..2] + @new_puz[5][0..2]
-  @box4 = @new_puz[3][3..5] + @new_puz[4][3..5] + @new_puz[5][3..5]
-  @box5 = @new_puz[3][6..8] + @new_puz[4][6..8] + @new_puz[5][6..8]
-  @box6 = @new_puz[6][0..2] + @new_puz[7][0..2] + @new_puz[8][0..2]
-  @box7 = @new_puz[6][3..5] + @new_puz[7][3..5] + @new_puz[8][3..5]
-  @box8 = @new_puz[6][6..8] + @new_puz[7][6..8] + @new_puz[8][6..8]
-
+  
+  set_box_variables
 
   @boxes = [@box0, @box1, @box2, @box3, @box4, @box5, @box6, @box7, @box8]
   
@@ -58,11 +112,13 @@ def clear_boxes
       box.each do |b| 
         if b.is_a? Integer
           num = b
-          box.each do |p|
-            unless p.is_a? Integer
-              p.delete (num) if p.include? (num)
-            end
-          end
+
+          delete_values box, num
+          # box.each do |p|
+          #   unless p.is_a? Integer
+          #     p.delete (num) if p.include? (num)
+          #   end
+          # end
         end
       end
     end
