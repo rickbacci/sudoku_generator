@@ -1,3 +1,10 @@
+def set_variables
+  set_row_variables
+  set_column_variables
+  set_box_variables
+end
+
+
 
 def set_row_variables
   row0
