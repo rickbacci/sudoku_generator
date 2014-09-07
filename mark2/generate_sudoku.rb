@@ -20,9 +20,6 @@ require_relative 'solve_for_four'
 @history = []
 ## Generates random numbers in boxes 0, 4, and 8
 set_boxes
-# set_row_variables
-# set_column_variables
-# set_box_variables
 
 ## loops thru boxes, rows, and columns and clears numbers that are not possibilites
 clear_all

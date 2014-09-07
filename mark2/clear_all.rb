@@ -9,13 +9,13 @@ def clear_all
 
   [@rows, @columns, @boxes].each do |items|
 
-    items.each do |row_number|
-      row_number.each do |element|
+    items.each do |item|
+      item.each do |element|
 
         if element.is_a?(Integer)
           number = element
 
-          row_number.each do |value|
+          item.each do |value|
             unless value.is_a?(Integer)
               value.delete(number) if value.include?(number)
             end
