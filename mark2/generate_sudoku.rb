@@ -16,65 +16,12 @@ require_relative 'solve_for_one'
 require_relative 'solve_for_two'
 require_relative 'solve_for_three'
 require_relative 'solve_for_four'
+require_relative 'validation'
+require_relative 'print_puzzle'
 
-@history = []
-## Generates random numbers in boxes 0, 4, and 8
 set_boxes
-
-## loops thru boxes, rows, and columns and clears numbers that are not possibilites
 clear_all
-
-puts
-@new_puz.each { |puzzle| p puzzle }
-puts
-
-def valid_puzzle?
-  total = 0
-  @new_puz.each do |row|
-    row.each do |element|
-      unless element.is_a? Array
-        total += element
-      end
-    end
-  end
-
-  if total == 405
-    return "Valid puzzle with a total of #{total}!"
-  else
-    return "Invalid puzzle! with a total of #{total}!"
-  end
-end
-
-def no_arrays?
-    @new_puz.each do |row|
-      row.each do |element|
-        return false if element.is_a? Array
-      end
-    end
-    return true
-  end
-
-def test_print array
-
-  
-    @new_puz.each_with_index do |row, row_num|
-      row.each_with_index do |element, col_num|
-      @new_puz[row_num][col_num] = " " if element.is_a? Array
-      end
-    end
-
-  puts "-------------------"
-
-  (0..8).each do |row|
-    puts  "| " + array[row][0].to_s + array[row][1].to_s + array[row][2].to_s + 
-         " | " + array[row][3].to_s + array[row][4].to_s + array[row][5].to_s + 
-         " | " + array[row][6].to_s + array[row][7].to_s + array[row][8].to_s + " |"
-
-    puts "-------------------" if row == 2 || row == 5
-
-  end
-  puts "-------------------"
-end
+print_initial_puzzle
 
 
 @loops = 0
@@ -119,15 +66,11 @@ end
 
 
 
-@history.each { |h| p h } 
 
-# puts
-# @new_puz.each { |puzzle| p puzzle }
-# puts
 
+print_history
 p valid_puzzle?
-
-test_print @new_puz
+print_final_puzzle(@new_puz)
 
 ### either loop thru array and finish block by block
 ### or look for matches across rows, columns, or boxes for size 2 arrays"
