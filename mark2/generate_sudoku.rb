@@ -57,23 +57,23 @@ def generate_puzzle(array)
   
   #p "end of recursion"  
 
-  done = @new_puzzle.flatten.inject(0) { |total, value| total + value }
+  done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops > 175
-    p "stopped after 175 recursions"
+  if @loops > 75
+    p "stopped after 75 recursions"
     puts
 
-    print_history
-    p valid_puzzle?
-    print_final_puzzle(array)
+    # print_history
+    # p valid_puzzle?(array)
+    # print_final_puzzle(array)
     return
-  elsif done == 405 && no_arrays?
+  elsif done == 405 && no_arrays?(array)
     p "puzzle solved after #{@loops} recursions"
     puts
-    print_history
-    p valid_puzzle?
-    print_final_puzzle(array)
+    # print_history
+    # p valid_puzzle?(array)
+    # print_final_puzzle(array)
     return
   else
     generate_puzzle(array)
@@ -81,16 +81,13 @@ def generate_puzzle(array)
 end
 
 
-
  generate_puzzle(@new_puzzle)
 
  
- #generate_puzzle(@columns)
- #generate_puzzle(@boxes)
 
-# print_history
-# p valid_puzzle?
-# print_final_puzzle(array)
+print_history
+p valid_puzzle?(@new_puzzle)
+print_final_puzzle(@new_puzzle)
 
 ### either loop thru array and finish block by block
 ### or look for matches across rows, columns, or boxes for size 2 arrays"

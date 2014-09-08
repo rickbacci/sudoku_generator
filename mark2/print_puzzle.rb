@@ -1,5 +1,5 @@
 
-def print_final_puzzle array
+def print_final_puzzle(array)
     array.each_with_index do |row, row_num|
       row.each_with_index do |element, col_num|
       array[row_num][col_num] = " " if element.is_a? Array
