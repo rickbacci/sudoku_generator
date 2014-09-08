@@ -34,17 +34,17 @@ def solve_for_one_rows
 end
 
 def solve_for_one_columns
-  solve_for_all (0..8), (0..0)
-  solve_for_all (0..8), (1..1)
-  solve_for_all (0..8), (2..2)
+  solve_for_all (0..8), [0]
+  solve_for_all (0..8), [1]
+  solve_for_all (0..8), [2]
 
-  solve_for_all (0..8), (3..3)
-  solve_for_all (0..8), (4..4)
-  solve_for_all (0..8), (5..5)  
+  solve_for_all (0..8), [3]
+  solve_for_all (0..8), [4]
+  solve_for_all (0..8), [5]  
 
-  solve_for_all (0..8), (6..6)
-  solve_for_all (0..8), (7..7)
-  solve_for_all (0..8), (8..8)
+  solve_for_all (0..8), [6]
+  solve_for_all (0..8), [7]
+  solve_for_all (0..8), [8]
 end
 
 def solve_for_one_boxes
