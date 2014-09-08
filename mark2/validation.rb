@@ -1,7 +1,7 @@
 
 def valid_puzzle?
   total = 0
-  @new_puz.each do |row|
+  @new_puzzle.each do |row|
     row.each do |element|
       unless element.is_a? Array
         total += element
@@ -17,7 +17,7 @@ def valid_puzzle?
 end
 
 def no_arrays?
-    @new_puz.each do |row|
+    @new_puzzle.each do |row|
       row.each do |element|
         return false if element.is_a? Array
       end

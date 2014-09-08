@@ -1,4 +1,4 @@
-require_relative 'empty_matrix'
+require_relative 'starting_matrix'
 
 require_relative 'set_boxes'
 
@@ -19,12 +19,17 @@ require_relative 'solve_for_four'
 require_relative 'validation'
 require_relative 'print_puzzle'
 
-set_boxes
-set_variables
-clear_all
-print_initial_puzzle
-@history = []
-@loops = 0
+def initial_setup
+  @new_puzzle = @starting_matrix
+  set_boxes
+  clear_all
+  set_variables
+  print_initial_puzzle
+  @history = []
+  @loops = 0
+end
+
+initial_setup
 
 
 
@@ -33,14 +38,14 @@ def generate_puzzle(array)
   set_variables
   clear_all
   
-  total_numbers_remaining?
+  total_numbers_remaining?(array)
   check_sizes(array)
   
   @loop_once = 0
 
 
   
-  if (@size1 > 0) || @number_totals_by_row.include?(1)
+  if (@size1 > 0) || @number_totals_remaining.include?(1)
     solve_for_one(array)
   elsif @size2 > 0
     solve_for_two(array)
@@ -52,32 +57,40 @@ def generate_puzzle(array)
   
   #p "end of recursion"  
 
-  done = @new_puz.flatten.inject(0) { |total, value| total + value }
+  done = @new_puzzle.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
   if @loops > 175
     p "stopped after 175 recursions"
     puts
+
+    print_history
+    p valid_puzzle?
+    print_final_puzzle(array)
     return
   elsif done == 405 && no_arrays?
     p "puzzle solved after #{@loops} recursions"
     puts
+    print_history
+    p valid_puzzle?
+    print_final_puzzle(array)
     return
   else
     generate_puzzle(array)
   end
 end
 
- #generate_puzzle(@new_puz)
-generate_puzzle(@rows)
 
+
+ generate_puzzle(@new_puzzle)
+
+ 
  #generate_puzzle(@columns)
  #generate_puzzle(@boxes)
 
-
-print_history
-p valid_puzzle?
-print_final_puzzle(@new_puz)
+# print_history
+# p valid_puzzle?
+# print_final_puzzle(array)
 
 ### either loop thru array and finish block by block
 ### or look for matches across rows, columns, or boxes for size 2 arrays"

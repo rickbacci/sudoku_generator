@@ -1,11 +1,11 @@
 
 def solve_for_one(array)
 
-  solve_for_one_boxes
+  #solve_for_one_boxes
   # solve_for_one_all(@rows)
   # solve_for_one_all(@columns)
   # solve_for_one_all(@boxes)
-  # solve_for_one_all(array)
+   solve_for_one_all(array)
   # solve_for_one_all(array)
   # solve_for_one_all(array)
   #solve_for_one_columns

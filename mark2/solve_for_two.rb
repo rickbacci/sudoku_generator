@@ -7,8 +7,8 @@ def solve_for_two(arrays)
         if (element.size == 2) && @loop_once == 0
 
           new_val = element - [element[0]]
-          @new_puz[row][column] = new_val
-          solve_for_one_all @new_puz
+          arrays[row][column] = new_val
+          solve_for_one_all(arrays)
           @history << "puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_two"
           
           @loop_once = 1

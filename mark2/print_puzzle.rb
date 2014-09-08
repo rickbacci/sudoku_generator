@@ -1,8 +1,8 @@
 
 def print_final_puzzle array
-    @new_puz.each_with_index do |row, row_num|
+    array.each_with_index do |row, row_num|
       row.each_with_index do |element, col_num|
-      @new_puz[row_num][col_num] = " " if element.is_a? Array
+      array[row_num][col_num] = " " if element.is_a? Array
       end
     end
 
@@ -21,7 +21,7 @@ end
 
 def print_initial_puzzle
   puts
-  @new_puz.each { |puzzle| p puzzle }
+  @new_puzzle.each { |puzzle| p puzzle }
   puts
 end
 
