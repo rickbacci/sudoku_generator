@@ -15,7 +15,6 @@ def build_flat_array(array, rows, columns)
       flat_array << @new_puzzle[row][col] if @new_puzzle[row][col].is_a?(Array)
     end
   end
-  
   flat_array = flat_array.flatten
 end
 
