@@ -89,6 +89,9 @@ print_history
 p valid_puzzle?(@new_puzzle)
 print_final_puzzle(@new_puzzle)
 
+
+####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS
 ### either loop thru array and finish block by block
 ### or look for matches across rows, columns, or boxes for size 2 arrays"
+### place number with least possibilities remaining
 

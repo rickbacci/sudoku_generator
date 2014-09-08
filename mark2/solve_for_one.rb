@@ -9,7 +9,7 @@ end
 
 def build_flat_array(array, rows, columns)
   flat_array = []
-
+  
   rows.each do |row|
     columns.each do |col|
       flat_array << @new_puzzle[row][col] if @new_puzzle[row][col].is_a?(Array)
@@ -80,14 +80,16 @@ def solve_for_all rows, columns
           if element.size == 1
 
             @new_puzzle[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set from #{element} to #{element[0]} in solve_for_one_boxes(arr.size == 1)"
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one_boxes(arr.size == 1)"
             clear_all
+            return
 
           elsif flat_array.count(num) == 1
 
             @new_puzzle[row][col] = num
             @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one_boxes(one remaining)"
             clear_all
+            return
 
           end
         end
