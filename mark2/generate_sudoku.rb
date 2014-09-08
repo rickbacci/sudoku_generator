@@ -43,11 +43,11 @@ def generate_puzzle(array)
   if (@size1 > 0) || @number_totals_by_row.include?(1)
     solve_for_one(array)
   elsif @size2 > 0
-    solve_for_two
+    solve_for_two(array)
   elsif @size3 > 0
-    solve_for_three
+    solve_for_three(array)
   elsif @size4 > 0
-    solve_for_four
+    solve_for_four(array)
   end
   
   #p "end of recursion"  
@@ -68,8 +68,12 @@ def generate_puzzle(array)
   end
 end
 
- generate_puzzle(@new_puz)
+ #generate_puzzle(@new_puz)
+generate_puzzle(@rows)
+
+ #generate_puzzle(@columns)
  #generate_puzzle(@boxes)
+
 
 print_history
 p valid_puzzle?
