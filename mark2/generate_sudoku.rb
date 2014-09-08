@@ -81,13 +81,20 @@ def generate_puzzle(array)
 end
 
 
- generate_puzzle(@new_puzzle)
+  
 
+
+  
+  generate_puzzle(@new_puzzle)
+
+  print_history
+  p valid_puzzle?(@new_puzzle)
+  print_final_puzzle(@new_puzzle)
+
+  
  
 
-print_history
-p valid_puzzle?(@new_puzzle)
-print_final_puzzle(@new_puzzle)
+
 
 
 ####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS!!!

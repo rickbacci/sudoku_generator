@@ -9,7 +9,7 @@ def solve_for_three(arrays)
             
             new_val = element - [number]
             arrays[row][column] = new_val
-            @history << "puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_three"
+            @history << "********** GUESS ********** puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_three"
             
             @loop_once = 1
             clear_all

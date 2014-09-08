@@ -8,8 +8,7 @@ def solve_for_four(arrays)
 
           new_val = element - [element[0]]
           arrays[row][column] = new_val
-          #solve_for_one_all(arrays)
-          @history << "puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_four"
+          @history << "********** GUESS ********** puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_four"
           
           @loop_once = 1
           clear_all

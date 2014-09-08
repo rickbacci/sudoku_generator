@@ -80,14 +80,16 @@ def solve_for_all rows, columns
           if element.size == 1
 
             @new_puzzle[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one_boxes(arr.size == 1)"
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one(arr.size == 1)"
+
             clear_all
             return
 
           elsif flat_array.count(num) == 1
 
             @new_puzzle[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one_boxes(one remaining)"
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one(one remaining)"
+
             clear_all
             return
 

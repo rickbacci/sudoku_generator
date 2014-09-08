@@ -21,8 +21,7 @@ def solve_for_two(arrays)
             new_val = element - [number]
             arrays[row][column] = new_val
             
-            
-            @history << "puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_two"
+            @history << "********** GUESS ********** puzzle[#{row}][#{column}] set from #{element} to #{new_val} in solve_for_two"
             
             @loop_once = 1
             clear_all
