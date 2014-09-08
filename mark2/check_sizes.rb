@@ -1,9 +1,9 @@
 
-def check_sizes
+def check_sizes(array)
   @solved, @size1, @size2, @size3, @size4, @size5, @size6 = 0, 0, 0, 0, 0, 0, 0
 
 
-  @new_puz.each do |row|
+  array.each do |row|
     row.each do |element|
       if element.size == 1 
         @size1 += 1

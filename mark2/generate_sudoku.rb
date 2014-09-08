@@ -20,22 +20,28 @@ require_relative 'validation'
 require_relative 'print_puzzle'
 
 set_boxes
+set_variables
 clear_all
 print_initial_puzzle
-
-
+@history = []
 @loops = 0
 
-def generate_puzzle
+
+
+def generate_puzzle(array)
   #p "start of recursion"
+  set_variables
+  clear_all
   
   total_numbers_remaining?
-  check_sizes
+  check_sizes(array)
   
   @loop_once = 0
+
+
   
   if (@size1 > 0) || @number_totals_by_row.include?(1)
-    solve_for_one 
+    solve_for_one(array)
   elsif @size2 > 0
     solve_for_two
   elsif @size3 > 0
@@ -49,8 +55,8 @@ def generate_puzzle
   done = @new_puz.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops > 75
-    p "stopped after 75 recursions"
+  if @loops > 175
+    p "stopped after 175 recursions"
     puts
     return
   elsif done == 405 && no_arrays?
@@ -58,15 +64,12 @@ def generate_puzzle
     puts
     return
   else
-    generate_puzzle
+    generate_puzzle(array)
   end
 end
 
- generate_puzzle
-
-
-
-
+ generate_puzzle(@new_puz)
+ #generate_puzzle(@boxes)
 
 print_history
 p valid_puzzle?
