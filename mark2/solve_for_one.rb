@@ -7,16 +7,7 @@ def solve_for_one(array)
 end
 
 
-def build_flat_array(array, rows, columns)
-  flat_array = []
-  
-  rows.each do |row|
-    columns.each do |col|
-      flat_array << @new_puzzle[row][col] if @new_puzzle[row][col].is_a?(Array)
-    end
-  end
-  flat_array = flat_array.flatten
-end
+
 
 def solve_for_one_rows
   solve_for_all (0..8), (0..8)
@@ -61,6 +52,18 @@ def solve_for_one_boxes
 end
 
 
+def build_flat_array(array, rows, columns)
+  flat_array = []
+  
+  rows.each do |row|
+    columns.each do |col|
+      flat_array << @new_puzzle[row][col] if @new_puzzle[row][col].is_a?(Array)
+    end
+  end
+  flat_array = flat_array.flatten
+end
+
+
 def solve_for_all rows, columns
   clear_all
   @loop_once = 0
@@ -81,6 +84,7 @@ def solve_for_all rows, columns
 
             @new_puzzle[row][col] = num
             @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one(arr.size == 1)"
+            @loop_once = 1
 
             clear_all
             return
@@ -89,6 +93,7 @@ def solve_for_all rows, columns
 
             @new_puzzle[row][col] = num
             @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one(one remaining)"
+            @loop_once = 1
 
             clear_all
             return

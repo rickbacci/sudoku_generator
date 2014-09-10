@@ -80,19 +80,19 @@ def generate_puzzle(array)
   end
 end
 
-
-  
-
-
-  
   generate_puzzle(@new_puzzle)
+
+
 
   print_history
   p valid_puzzle?(@new_puzzle)
   print_final_puzzle(@new_puzzle)
 
   
- 
+
+
+ # p @new_puzzle[0]
+ # p col0
 
 
 
