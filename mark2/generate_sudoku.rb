@@ -63,18 +63,11 @@ def generate_puzzle(array)
   if @loops > 75
     p "stopped after 75 recursions"
     puts
-
-    # print_history
-    # p valid_puzzle?(array)
-    # print_final_puzzle(array)
-    return
+    #return
   elsif done == 405 && no_arrays?(array)
     p "puzzle solved after #{@loops} recursions"
     puts
-    # print_history
-    # p valid_puzzle?(array)
-    # print_final_puzzle(array)
-    return
+    #return
   else
     generate_puzzle(array)
   end

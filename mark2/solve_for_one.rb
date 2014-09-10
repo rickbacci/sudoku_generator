@@ -11,16 +11,16 @@ end
 
 def solve_for_one_rows
   solve_for_all (0..8), (0..8)
-  solve_for_all (0..8), (0..8)
-  solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8)
 
-  solve_for_all (0..8), (0..8)
-  solve_for_all (0..8), (0..8)
-  solve_for_all (0..8), (0..8) 
+  # solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8) 
 
-  solve_for_all (0..8), (0..8)
-  solve_for_all (0..8), (0..8)
-  solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8)
+  # solve_for_all (0..8), (0..8)
 end
 
 def solve_for_one_columns
