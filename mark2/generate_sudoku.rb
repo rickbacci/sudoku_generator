@@ -31,7 +31,7 @@ end
 
 initial_setup
 
-
+@loop_again = 0
 
 def generate_puzzle(array)
   #p "start of recursion"
@@ -42,6 +42,7 @@ def generate_puzzle(array)
   check_sizes(array)
   
   @loop_once = 0
+  #@loop_again = 0
 
  p "this is size1 value : #{@size1}"
  p "number totals remaining include 1: #{@number_totals_remaining.include?(1)}"

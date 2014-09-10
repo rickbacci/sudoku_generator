@@ -39,43 +39,44 @@ def solve_for_two(array)
   solve_for_two_boxes
   solve_for_two_columns
   solve_for_two_rows
+  @loop_again = 1
 end
 
 def solve_for_two_rows
-  solve_for_all (0..8), (0..8)
+  solve_for_all (0..8), (0..8), :rows
 end
 
 def solve_for_two_columns
-  solve_for_all (0..8), [0]
-  solve_for_all (0..8), [1]
-  solve_for_all (0..8), [2]
+  solve_for_all (0..8), [0], :columns
+  solve_for_all (0..8), [1], :columns
+  solve_for_all (0..8), [2], :columns
 
-  solve_for_all (0..8), [3]
-  solve_for_all (0..8), [4]
-  solve_for_all (0..8), [5]  
+  solve_for_all (0..8), [3], :columns
+  solve_for_all (0..8), [4], :columns
+  solve_for_all (0..8), [5], :columns 
 
-  solve_for_all (0..8), [6]
-  solve_for_all (0..8), [7]
-  solve_for_all (0..8), [8]
+  solve_for_all (0..8), [6], :columns
+  solve_for_all (0..8), [7], :columns
+  solve_for_all (0..8), [8], :columns
 end
 
 def solve_for_two_boxes
-  solve_for_all (0..2), (0..2)
-  solve_for_all (0..2), (3..5)
-  solve_for_all (0..2), (6..8)
+  solve_for_all (0..2), (0..2), :boxes
+  solve_for_all (0..2), (3..5), :boxes
+  solve_for_all (0..2), (6..8), :boxes
 
-  solve_for_all (3..5), (0..2)
-  solve_for_all (3..5), (3..5)
-  solve_for_all (3..5), (6..8)  
+  solve_for_all (3..5), (0..2), :boxes
+  solve_for_all (3..5), (3..5), :boxes
+  solve_for_all (3..5), (6..8), :boxes  
 
-  solve_for_all (6..8), (0..2)
-  solve_for_all (6..8), (3..5)
-  solve_for_all (6..8), (6..8)
+  solve_for_all (6..8), (0..2), :boxes
+  solve_for_all (6..8), (3..5), :boxes
+  solve_for_all (6..8), (6..8), :boxes
 end
 
 
-def solve_for_all rows, columns
-  return if @size1 > 0
+def solve_for_all rows, columns, location
+  #return if @size1 > 0
   clear_all
   @loop_once = 0
 
@@ -101,7 +102,7 @@ def solve_for_all rows, columns
               c = temp_location[index][1]
 
               @new_puzzle[r][c] = [element[0]]
-              @history << "puzzle[#{r}][#{c}] set from #{element} to #{[element[0]]} (matching pair found)"
+              @history << "puzzle[#{r}][#{c}] set from #{element} to #{[element[0]]} (matching pair found) from #{location}"
 
               @loop_once = 1
               clear_all
@@ -111,9 +112,11 @@ def solve_for_all rows, columns
               r = temp_location[index][0]
               c = temp_location[index][1]
 
-              @new_puzzle[r][c] = [element[0]]
+              @new_puzzle[r][c] = [element[0]] if @loop_again == 1
+              @loop_again = 0
+
               
-              @history << "********** GUESS ********** puzzle[#{r}][#{c}] set from #{element} to #{[element[0]]} in solve_for_two"
+              @history << "********** GUESS ********** puzzle[#{r}][#{c}] set from #{element} to #{[element[0]]} in solve_for_two #{location}"
               clear_all
 
               @loop_once = 1
