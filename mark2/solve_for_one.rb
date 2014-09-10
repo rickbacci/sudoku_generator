@@ -1,6 +1,5 @@
 
 def solve_for_one(array)
-
   solve_for_one_boxes
   solve_for_one_columns
   solve_for_one_rows
@@ -10,45 +9,35 @@ end
 
 
 def solve_for_one_rows
-  solve_for_all (0..8), (0..8)
-  # solve_for_all (0..8), (0..8)
-  # solve_for_all (0..8), (0..8)
-
-  # solve_for_all (0..8), (0..8)
-  # solve_for_all (0..8), (0..8)
-  # solve_for_all (0..8), (0..8) 
-
-  # solve_for_all (0..8), (0..8)
-  # solve_for_all (0..8), (0..8)
-  # solve_for_all (0..8), (0..8)
+  solve_for_ones (0..8), (0..8)
 end
 
 def solve_for_one_columns
-  solve_for_all (0..8), [0]
-  solve_for_all (0..8), [1]
-  solve_for_all (0..8), [2]
+  solve_for_ones (0..8), [0]
+  solve_for_ones (0..8), [1]
+  solve_for_ones (0..8), [2]
 
-  solve_for_all (0..8), [3]
-  solve_for_all (0..8), [4]
-  solve_for_all (0..8), [5]  
+  solve_for_ones (0..8), [3]
+  solve_for_ones (0..8), [4]
+  solve_for_ones (0..8), [5]  
 
-  solve_for_all (0..8), [6]
-  solve_for_all (0..8), [7]
-  solve_for_all (0..8), [8]
+  solve_for_ones (0..8), [6]
+  solve_for_ones (0..8), [7]
+  solve_for_ones (0..8), [8]
 end
 
 def solve_for_one_boxes
-  solve_for_all (0..2), (0..2)
-  solve_for_all (0..2), (3..5)
-  solve_for_all (0..2), (6..8)
+  solve_for_ones (0..2), (0..2)
+  solve_for_ones (0..2), (3..5)
+  solve_for_ones (0..2), (6..8)
 
-  solve_for_all (3..5), (0..2)
-  solve_for_all (3..5), (3..5)
-  solve_for_all (3..5), (6..8)  
+  solve_for_ones (3..5), (0..2)
+  solve_for_ones (3..5), (3..5)
+  solve_for_ones (3..5), (6..8)  
 
-  solve_for_all (6..8), (0..2)
-  solve_for_all (6..8), (3..5)
-  solve_for_all (6..8), (6..8)
+  solve_for_ones (6..8), (0..2)
+  solve_for_ones (6..8), (3..5)
+  solve_for_ones (6..8), (6..8)
 end
 
 
@@ -64,7 +53,7 @@ def build_flat_array(array, rows, columns)
 end
 
 
-def solve_for_all rows, columns
+def solve_for_ones rows, columns
   clear_all
   @loop_once = 0
   

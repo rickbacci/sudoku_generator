@@ -43,9 +43,11 @@ def generate_puzzle(array)
   
   @loop_once = 0
 
-
+ p "this is size1 value : #{@size1}"
+ p "number totals remaining include 1: #{@number_totals_remaining.include?(1)}"
   
   if (@size1 > 0) || @number_totals_remaining.include?(1)
+    puts "in one"
     solve_for_one(array)
   elsif @size2 > 0
     solve_for_two(array)

@@ -36,8 +36,8 @@
 
 
 def solve_for_two(array)
-  #solve_for_two_boxes
-  #solve_for_two_columns
+  solve_for_two_boxes
+  solve_for_two_columns
   solve_for_two_rows
 end
 
@@ -74,13 +74,8 @@ def solve_for_two_boxes
 end
 
 
-
-
-
-
-
-
 def solve_for_all rows, columns
+  return if @size1 > 0
   clear_all
   @loop_once = 0
 
