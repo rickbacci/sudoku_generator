@@ -14,10 +14,13 @@ require_relative 'total_numbers_remaining'
 
 require_relative 'solve_for_one'
 require_relative 'solve_for_two'
+require_relative 'ranges'
+
 require_relative 'solve_for_three'
 require_relative 'solve_for_four'
 require_relative 'validation'
 require_relative 'print_puzzle'
+require_relative 'solve_box2'
 
 def initial_setup
   @new_puzzle = @starting_matrix
@@ -44,11 +47,10 @@ def generate_puzzle(array)
   @loop_once = 0
   #@loop_again = 0
 
- p "this is size1 value : #{@size1}"
- p "number totals remaining include 1: #{@number_totals_remaining.include?(1)}"
+ #p "this is size1 value : #{@size1}"
+ #p "number totals remaining include 1: #{@number_totals_remaining.include?(1)}"
   
   if (@size1 > 0) || @number_totals_remaining.include?(1)
-    puts "in one"
     solve_for_one(array)
   elsif @size2 > 0
     solve_for_two(array)
@@ -66,31 +68,27 @@ def generate_puzzle(array)
   if @loops > 75
     p "stopped after 75 recursions"
     puts
-    #return
+    return
   elsif done == 405 && no_arrays?(array)
     p "puzzle solved after #{@loops} recursions"
     puts
-    #return
+    return
   else
     generate_puzzle(array)
   end
 end
 
-  generate_puzzle(@new_puzzle)
+#generate_puzzle(@box2clear)
+generate_puzzle(@new_puzzle)
+  #p @box2
 
+#p @new_puzzle[0..2][6..8]
+#p @box2clear
 
 
   print_history
   p valid_puzzle?(@new_puzzle)
   print_final_puzzle(@new_puzzle)
-
-  
-
-
- # p @new_puzzle[0]
- # p col0
-
-
 
 
 ####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS!!!

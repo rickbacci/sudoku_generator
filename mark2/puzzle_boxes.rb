@@ -35,5 +35,8 @@ def box8
   @box8 = @new_puzzle[6][6..8] + @new_puzzle[7][6..8] + @new_puzzle[8][6..8]
 end
 
+def box2clear
+  @box2clear = [@new_puzzle[0][6..8]] + [@new_puzzle[1][6..8]] + [@new_puzzle[2][6..8]]
+end
 
 

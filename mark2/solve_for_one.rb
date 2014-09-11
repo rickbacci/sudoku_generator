@@ -1,78 +1,45 @@
 
 def solve_for_one(array)
-  solve_for_one_boxes
-  solve_for_one_columns
-  solve_for_one_rows
+  solve_for_rows( array, :solve_for_ones )
+  solve_for_columns( array, :solve_for_ones )
+  solve_for_boxes( array, :solve_for_ones )
 end
 
 
-
-
-def solve_for_one_rows
-  solve_for_ones (0..8), (0..8)
-end
-
-def solve_for_one_columns
-  solve_for_ones (0..8), [0]
-  solve_for_ones (0..8), [1]
-  solve_for_ones (0..8), [2]
-
-  solve_for_ones (0..8), [3]
-  solve_for_ones (0..8), [4]
-  solve_for_ones (0..8), [5]  
-
-  solve_for_ones (0..8), [6]
-  solve_for_ones (0..8), [7]
-  solve_for_ones (0..8), [8]
-end
-
-def solve_for_one_boxes
-  solve_for_ones (0..2), (0..2)
-  solve_for_ones (0..2), (3..5)
-  solve_for_ones (0..2), (6..8)
-
-  solve_for_ones (3..5), (0..2)
-  solve_for_ones (3..5), (3..5)
-  solve_for_ones (3..5), (6..8)  
-
-  solve_for_ones (6..8), (0..2)
-  solve_for_ones (6..8), (3..5)
-  solve_for_ones (6..8), (6..8)
-end
-
-
-def build_flat_array(array, rows, columns)
+def build_flat_array( array, rows, columns )
   flat_array = []
+  @array = array
+
   
   rows.each do |row|
     columns.each do |col|
-      flat_array << @new_puzzle[row][col] if @new_puzzle[row][col].is_a?(Array)
+      flat_array << @array[row][col] if @array[row][col].is_a?(Array)
     end
   end
   flat_array = flat_array.flatten
 end
 
 
-def solve_for_ones rows, columns
+def solve_for_ones(array, rows, columns, location)
   clear_all
   @loop_once = 0
-  
+  @array = array
 
-  flat_array = build_flat_array(@new_puzzle, rows, columns)
+  flat_array = build_flat_array(@array, rows, columns)
 
   (1..9).each do |num|
     rows.each do |row|
 
       columns.each do |col|
 
-        element = @new_puzzle[row][col]
+        element = @array[row][col]
        
         if element.is_a?(Array) && element.include?(num)
           
           if element.size == 1
 
-            @new_puzzle[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one(arr.size == 1)"
+            @array[row][col] = num
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one #{location}(arr.size == 1)"
             @loop_once = 1
 
             clear_all
@@ -80,8 +47,8 @@ def solve_for_ones rows, columns
 
           elsif flat_array.count(num) == 1
 
-            @new_puzzle[row][col] = num
-            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one(one remaining)"
+            @array[row][col] = num
+            @history << "puzzle[#{row}][#{col}] set from #{element} to #{num} in solve_for_one  #{location}(one remaining)"
             @loop_once = 1
 
             clear_all
