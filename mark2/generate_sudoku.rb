@@ -24,6 +24,7 @@ require_relative 'solve_box2'
 
 def initial_setup
   @new_puzzle = @starting_matrix
+
   set_boxes
   clear_all
   set_variables
@@ -36,7 +37,8 @@ initial_setup
 
 @loop_again = 0
 
-def generate_puzzle(array)
+def generate_puzzle(array, section = :all)
+  p section
   #p "start of recursion"
   set_variables
   clear_all
@@ -74,21 +76,25 @@ def generate_puzzle(array)
     puts
     return
   else
-    generate_puzzle(array)
+    generate_puzzle(array, section)
   end
 end
 
-#generate_puzzle(@box2clear)
-generate_puzzle(@new_puzzle)
-  #p @box2
 
+
+starting_matrix = @starting_matrix
+
+
+generate_puzzle(starting_matrix, :box2)
+
+#generate_puzzle(@box2clear)
 #p @new_puzzle[0..2][6..8]
 #p @box2clear
 
 
   print_history
-  p valid_puzzle?(@new_puzzle)
-  print_final_puzzle(@new_puzzle)
+  p valid_puzzle?(starting_matrix)
+  print_final_puzzle(starting_matrix)
 
 
 ####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS!!!
