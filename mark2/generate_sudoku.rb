@@ -38,7 +38,7 @@ initial_setup
 @loop_again = 0
 
 def generate_puzzle(array, section = :all)
-  p section
+  
   #p "start of recursion"
   set_variables
   clear_all
@@ -53,13 +53,13 @@ def generate_puzzle(array, section = :all)
  #p "number totals remaining include 1: #{@number_totals_remaining.include?(1)}"
   
   if (@size1 > 0) || @number_totals_remaining.include?(1)
-    solve_for_one(array)
+    solve_for_one(array, section)
   elsif @size2 > 0
-    solve_for_two(array)
+    solve_for_two(array, section)
   elsif @size3 > 0
-    solve_for_three(array)
+    solve_for_three(array, section)
   elsif @size4 > 0
-    solve_for_four(array)
+    solve_for_four(array, section)
   end
   
   #p "end of recursion"  

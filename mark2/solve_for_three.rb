@@ -1,5 +1,5 @@
 
-def solve_for_three(arrays)
+def solve_for_three(arrays, section)
 
   (1..9).each do |number|
     arrays.each_with_index do |array, row|

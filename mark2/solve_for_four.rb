@@ -1,4 +1,4 @@
-def solve_for_four(arrays)
+def solve_for_four(arrays, section)
 
 
   arrays.each_with_index do |array, row|

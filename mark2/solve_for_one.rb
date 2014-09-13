@@ -1,8 +1,8 @@
 
-def solve_for_one(array)
-  solve_for_rows( array, :solve_for_ones )
-  solve_for_columns( array, :solve_for_ones )
-  solve_for_boxes( array, :solve_for_ones )
+def solve_for_one(array, section)
+  solve_for_rows( array, :solve_for_ones, section )
+  solve_for_columns( array, :solve_for_ones, section )
+  solve_for_boxes( array, :solve_for_ones, section )
 end
 
 
@@ -20,7 +20,7 @@ def build_flat_array( array, rows, columns )
 end
 
 
-def solve_for_ones(array, rows, columns, location)
+def solve_for_ones(array, rows, columns, location, section)
   clear_all
   @loop_once = 0
   @array = array
