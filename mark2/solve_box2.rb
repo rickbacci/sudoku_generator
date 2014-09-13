@@ -19,8 +19,8 @@ end
 
 box2
 
-p coords_array
-p @box2
+# p coords_array
+# p @box2
   @box2.each_with_index do |element, index|
    # generate_puzzle(element) if element.is_a?(Array)
   end
