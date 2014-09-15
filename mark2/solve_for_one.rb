@@ -5,7 +5,9 @@ def solve_for_ones(array, rows, columns, location, section)
 
   flat_array = build_flat_array(array, rows, columns)
 
-  (1..9).each do |num|
+  
+  #(1..9).each do |num|
+  @new_order.each do |num|
     rows.each do |row|
       columns.each do |column|
 

@@ -52,6 +52,7 @@ def generate_puzzle(array, section = nil)
   total_numbers_remaining?(array)
   #p @number_totals_remaining
   check_sizes(array)
+  #p @new_order
   
   @loop_once = 0
   #@loop_again = 0
@@ -72,8 +73,8 @@ def generate_puzzle(array, section = nil)
   done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops > 175
-    p "puzzle stopped after 175 recursions"
+  if @loops > 50
+    p "puzzle stopped after 50 recursions"
     puts
     return
   elsif done == 405 && no_arrays?(array)

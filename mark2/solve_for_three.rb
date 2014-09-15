@@ -1,7 +1,8 @@
 
 def solve_for_threes(arrays, rows, columns, location, section)
 
-  (1..9).each do |number|
+  #(1..9).each do |number|
+  @new_order.each do |number|
     arrays.each_with_index do |array, row|
       array.each_with_index do |element, column|
         if element.is_a?(Array) && @number_totals_remaining[ number - 1 ] != 1
