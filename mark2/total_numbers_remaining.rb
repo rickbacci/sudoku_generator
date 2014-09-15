@@ -15,7 +15,8 @@ def total_numbers_remaining?(array)
       end
     end
   end
-  # @number_totals_remaining.each_with_index do |number, index|
-  #   #p "There are #{number} #{index + 1}'s remaining in the puzzle"
-  # end
+   @number_totals_remaining.each_with_index do |number, index|
+     p "There are #{number} #{index + 1}'s remaining in the puzzle"
+     puts if index == 8
+   end
 end

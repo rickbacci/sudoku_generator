@@ -27,8 +27,9 @@ def check_sizes(array)
 
   #p "#{@solved} numbers have been solved"
   #puts
-
+unless lengths.inject {|sum, num| sum + num } == 0
   lengths.each_with_index do |value, index|
-    #p "There are #{value} elements with a length of #{ index + 1 }"
+    #p "There are #{value} elements with a size of #{ index + 1 }"
   end
+end
 end

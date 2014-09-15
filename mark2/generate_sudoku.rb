@@ -21,6 +21,7 @@ require_relative 'solve_for_four'
 require_relative 'validation'
 require_relative 'print_puzzle'
 require_relative 'solve_box2'
+require_relative 'solve_for'
 
 def initial_setup
   @new_puzzle = @starting_matrix
@@ -35,40 +36,44 @@ end
 
 initial_setup
 
-@loop_again = 0
+@matrix_changed = @starting_matrix
 
-def generate_puzzle(array, section = :all)
+#@loop_again = 0
+
+def next?
+  @matrix_changed == @starting_matrix
+end
+
+def generate_puzzle(array, section = nil)
   
-  #p "start of recursion"
   set_variables
   clear_all
   
   total_numbers_remaining?(array)
+  #p @number_totals_remaining
   check_sizes(array)
   
   @loop_once = 0
   #@loop_again = 0
 
- #p "this is size1 value : #{@size1}"
- #p "number totals remaining include 1: #{@number_totals_remaining.include?(1)}"
-  
   if (@size1 > 0) || @number_totals_remaining.include?(1)
     solve_for_one(array, section)
   elsif @size2 > 0
     solve_for_two(array, section)
-  elsif @size3 > 0
+  elsif @size3 > 0 
     solve_for_three(array, section)
-  elsif @size4 > 0
     solve_for_four(array, section)
+
+  # elsif @size4 > 0
+  #   solve_for_four(array, section)
   end
   
-  #p "end of recursion"  
 
   done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops > 75
-    p "stopped after 75 recursions"
+  if @loops > 175
+    p "puzzle stopped after 175 recursions"
     puts
     return
   elsif done == 405 && no_arrays?(array)
@@ -85,18 +90,19 @@ end
 starting_matrix = @starting_matrix
 
 
+#generate_puzzle(starting_matrix)
 generate_puzzle(starting_matrix, :box2)
 
-#generate_puzzle(@box2clear)
-#p @new_puzzle[0..2][6..8]
-#p @box2clear
 
+print_history
+p valid_puzzle?(starting_matrix)
+print_final_puzzle(starting_matrix)
 
-  print_history
-  p valid_puzzle?(starting_matrix)
-  print_final_puzzle(starting_matrix)
+# p "box2"
+# p box2
 
-
+###### need to loop thru numbers by fewest to most remaining...
+### if section !nil then get ranges of section.
 ####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS!!!
 ### or look for matches across rows, columns, or boxes for size 2 arrays"
 ###

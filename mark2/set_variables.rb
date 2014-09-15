@@ -40,5 +40,4 @@ def set_box_variables
   box6
   box7
   box8
-  box2clear
 end
