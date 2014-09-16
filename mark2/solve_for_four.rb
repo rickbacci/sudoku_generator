@@ -6,11 +6,9 @@ def solve_for_fours(arrays, rows, columns, location, section)  #(0..2), (6..8) f
         if (element.size == 4) && @loop_once == 0
           if section == :box2
             if (0..2).include?(row) && (6..8).include?(column)
-              p row
-              p column
               new_val = element - [element[0]]
               arrays[row][column] = new_val
-              @history << "solve box2 [#{row}][#{column}] set from #{element} to #{new_val} " +
+              @history << "solve #{section} [#{row}][#{column}] set from #{element} to #{new_val} " +
                           "in solve_for_four ****************************"
               @loop_once = 1
               clear_all

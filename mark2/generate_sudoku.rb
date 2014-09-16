@@ -58,10 +58,13 @@ def generate_puzzle(array, section = nil)
   #@loop_again = 0
 
   if (@size1 > 0) || @number_totals_remaining.include?(1)
+    #p "in solve for 1"
     solve_for_one(array, section)
   elsif @size2 > 0
+    #p "in solve for 2"
     solve_for_two(array, section)
   elsif @size3 > 0 
+    #p "in solve for 3"
     solve_for_three(array, section)
     solve_for_four(array, section)
 
@@ -86,22 +89,50 @@ def generate_puzzle(array, section = nil)
   end
 end
 
+@saved_puzzles = []
+
+new_puzzle = @new_puzzle
+
+@valid_total = 0
+
+10000.times do
+  @saved_puzzles << new_puzzle if no_arrays?(new_puzzle)
+
+  generate_puzzle(new_puzzle, :box2)
+  initial_setup
+
+  print_history
+
+  p valid_puzzle?(new_puzzle)
+
+  if  valid_puzzle?(new_puzzle)
+    @valid_total += 1
+  end
+
+  #p saved_puzzles
+
+end
 
 
-starting_matrix = @starting_matrix
 
 
-#generate_puzzle(starting_matrix)
-generate_puzzle(starting_matrix, :box2)
+# print_history
+# p valid_puzzle?(new_puzzle)
+# print_final_puzzle(new_puzzle)
+
+puts  
+p no_arrays?(new_puzzle)
+puts
+#print_final_puzzle(saved_puzzles)
 
 
-print_history
-p valid_puzzle?(starting_matrix)
-print_final_puzzle(starting_matrix)
+p "There were #{@valid_total} valid puzzles generated!"
+# @saved_puzzles.each do |puzzle|
+#   p puzzle
+# end
 
-# p "box2"
-# p box2
 
+############ send number array thru 1 at a time from main
 ###### need to loop thru numbers by fewest to most remaining...
 ### if section !nil then get ranges of section.
 ####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS!!!

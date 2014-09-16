@@ -21,16 +21,14 @@ def total_numbers_remaining?(array)
     #p "There are #{number} #{index + 1}'s remaining in the puzzle"
     hash[index + 1] = number
     #puts if index == 8
-    end
-
-    order = hash.sort {|a1,a2| a1[1]<=>a2[1]}
-
-    @new_order = []
-
-    order.each do |o|
-      @new_order << o[0] ##unless o[1] == 0 #unless o[1] == 0 ## will mess up indexes
   end
 
-  @new_order 
+  order = hash.sort {|a1,a2| a1[1] <=> a2[1]}
 
+  @new_order = []
+
+  order.each do |o|
+    @new_order << o[0]
+  end
+  @new_order 
 end

@@ -22,8 +22,8 @@ def solve_for_twos(array, rows, columns, location, section)
                   c = temp_location[index][1]
                   array[r][c] = [element[0]] 
                   #@loop_again = 0 #### do i need?
-                  @history << "solve box2 [#{r}][#{c}] set from #{element} to #{[element[0]]}" + 
-                              " (matching pair found) from #{location}"
+                  @history << "solve #{section} [#{r}][#{c}] set from #{element} to" + 
+                              " #{[element[0]]} (matching pair) from #{location}"
                   @loop_once = 1
                   clear_all
                   return
@@ -32,8 +32,8 @@ def solve_for_twos(array, rows, columns, location, section)
                   c = temp_location[index][1]
                   array[r][c] = [element[0]] #if @loop_again == 1
                   #@loop_again = 0
-                  @history << "solve box2 [#{r}][#{c}] set from #{element} to #{[element[0]]}" + 
-                              " in solve_for_two #{location}"
+                  @history << "solve #{section} [#{r}][#{c}] set from #{element}" + 
+                              " to #{[element[0]]} in solve_for_two #{location}"
                   clear_all
                   @loop_once = 1
                   return
@@ -44,8 +44,8 @@ def solve_for_twos(array, rows, columns, location, section)
                 r = temp_location[index][0]
                 c = temp_location[index][1]
                 array[r][c] = [element[0]]
-                @history << "********** GUESS ********** puzzle[#{r}][#{c}] set from #{element} to" +
-                            " #{[element[0]]} (matching pair found) from #{location}"
+                @history << "********** GUESS ********** puzzle[#{r}][#{c}] set from " +
+                            "#{element} to #{[element[0]]} (matching pair) from #{location}"
                 @loop_once = 1
                 clear_all
                 return
