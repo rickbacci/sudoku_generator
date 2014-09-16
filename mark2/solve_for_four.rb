@@ -1,5 +1,6 @@
 
 def solve_for_fours(arrays, rows, columns, location, section)  #(0..2), (6..8) for box2
+
   arrays.each_with_index do |array, row|
     array.each_with_index do |element, column|
       if element.is_a?(Array)
@@ -11,16 +12,16 @@ def solve_for_fours(arrays, rows, columns, location, section)  #(0..2), (6..8) f
               @history << "solve #{section} [#{row}][#{column}] set from #{element} to #{new_val} " +
                           "in solve_for_four ****************************"
               @loop_once = 1
-              clear_all
+              clear_all(arrays)
               return
             end
           else
             new_val = element - [element[0]]
             arrays[row][column] = new_val
-            @history << "********** GUESS ********** puzzle[#{row}][#{column}] set from " +
+            @history << " GUESS ********** puzzle[#{row}][#{column}] set from " +
                         "#{element} to #{new_val} in solve_for_four"
             @loop_once = 1
-            clear_all
+            clear_all(arrays)
             return
           end
         end

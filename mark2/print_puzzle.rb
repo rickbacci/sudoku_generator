@@ -19,9 +19,9 @@ def print_final_puzzle(array)
   puts "-------------------"
 end
 
-def print_initial_puzzle
+def print_initial_puzzle(new_puzzle)
   puts
-  @new_puzzle.each { |puzzle| p puzzle }
+  new_puzzle.each { |puzzle| p puzzle }
   puts
 end
 

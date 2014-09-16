@@ -1,14 +1,11 @@
 
 def solve_for_ones(array, rows, columns, location, section)
-  clear_all
+  clear_all(array)
   @loop_once = 0
 
   flat_array = build_flat_array(array, rows, columns)
 
   
-  #(1..9).each do |num|
-    #@new_order.each do |num|
-      ### this better than passing an instance variable around? probably
   total_numbers_remaining?(array).each do |num|
     rows.each do |row|
       columns.each do |column|
@@ -22,14 +19,14 @@ def solve_for_ones(array, rows, columns, location, section)
                 @history << "solve #{section} [#{row}][#{column}] set from #{element} to #{num} in" +
                             " solve_for_one #{location}(arr.size == 1)"
                 @loop_once = 1
-                clear_all
+                clear_all(array)
                 return
               elsif flat_array.count(num) == 1
                 array[row][column] = num
                 @history << "solve #{section} [#{row}][#{column}] set from #{element} to #{num} in " +
                             "solve_for_one  #{location}(one remaining)"
                 @loop_once = 1
-                clear_all
+                clear_all(array)
                 return
               end
             end
@@ -39,14 +36,14 @@ def solve_for_ones(array, rows, columns, location, section)
               @history << "********** puzzle[#{row}][#{column}] set from #{element} to #{num} in " +
                           "solve_for_one #{location}(arr.size == 1)"
               @loop_once = 1
-              clear_all
+              clear_all(array)
               return
             elsif flat_array.count(num) == 1
               array[row][column] = num
               @history << "********** puzzle[#{row}][#{column}] set from #{element} to #{num} in " +
                           "solve_for_one  #{location}(one remaining)"
               @loop_once = 1
-              clear_all
+              clear_all(array)
               return
             end
           end ## end of box2
@@ -55,25 +52,3 @@ def solve_for_ones(array, rows, columns, location, section)
     end
   end
 end
-
-                # @done = true
-                # set_variables
-                # box2.each do |box|
-                #   @done = false if box.is_a?(Array)
-                # end
-
-                # section = nil if @done == false
-
-
-                #section = nil if box2.inject { |sum, num| sum + num } == 45
-
-
-
-                #section = nil if box2.inject { |sum, num| sum + num } == 45
-                #  @done = true
-                #  set_variables
-                # box2.each do |box|
-                #   @done = false if box.is_a?(Array)
-                # end
-
-                # section = nil if @done == false

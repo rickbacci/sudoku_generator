@@ -1,9 +1,6 @@
 
 def solve_for_threes(arrays, rows, columns, location, section)
-#   p 'section'
-#   p section
-# p "new order"
-# p @new_order
+
   #(1..9).each do |number|
   @new_order.each do |number|
     arrays.each_with_index do |array, row|
@@ -18,16 +15,16 @@ def solve_for_threes(arrays, rows, columns, location, section)
                 @history << "solve #{section} [#{row}][#{column}] set from #{element} to " +
                             "#{new_val} in solve_for_three"
                 @loop_once = 1
-                clear_all
+                clear_all(arrays)
                 return
               end
             else
               new_val = element - [number]
               arrays[row][column] = new_val
-              @history << "********** GUESS ********** puzzle[#{row}][#{column}] set from " +
+              @history << " GUESS ********** puzzle[#{row}][#{column}] set from " +
                           "#{element} to #{new_val} in solve_for_three"
               @loop_once = 1
-              clear_all
+              clear_all(arrays)
               return
             end
           end
