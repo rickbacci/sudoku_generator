@@ -2,7 +2,7 @@
 def solve_for_threes(arrays, rows, columns, location, section)
 
   #(1..9).each do |number|
-  @new_order.each do |number|
+  total_numbers_remaining?(arrays).each do |number|
     arrays.each_with_index do |array, row|
       array.each_with_index do |element, column|
  #       p column

@@ -22,15 +22,16 @@ require_relative 'validation'
 require_relative 'print_puzzle'
 require_relative 'solve_box2'
 require_relative 'solve_for'
+require_relative 'solve_for_pairs'
 
 
 new_puzzle = starting_matrix
 
 def initial_setup(new_puzzle)
-  #set_boxes(new_puzzle)
+  set_boxes(new_puzzle)
   clear_all(new_puzzle)
   set_variables(new_puzzle)
-  #print_initial_puzzle(new_puzzle)
+  print_initial_puzzle(new_puzzle)
   @history = []
   @loops = 0
   new_puzzle
@@ -43,7 +44,7 @@ def generate_puzzle(array, section = nil)
   set_variables(array)
   clear_all(array)
   
-  total_numbers_remaining?(array)
+   total_numbers_remaining?(array)
   check_sizes(array)
   
   @loop_once = 0
@@ -52,6 +53,7 @@ def generate_puzzle(array, section = nil)
   if (@size1 > 0) || @number_totals_remaining.include?(1)
     solve_for_one(array, section)
   elsif @size2 > 0
+    solve_for_pair(array, section)
     solve_for_two(array, section)
   elsif @size3 > 0 
     solve_for_three(array, section)
@@ -61,7 +63,7 @@ def generate_puzzle(array, section = nil)
   done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops == 50
+  if @loops == 75
     p "puzzle stopped after #{@loops} recursions"
     puts
     array
@@ -83,14 +85,14 @@ end
 possibly_bad_puzzle = []
 
 
-amount = 1
+amount = 10
 
 amount.times do
   new_puzzle = starting_matrix
   
   #initial_setup(new_puzzle)
 
-  p possibly_bad_puzzle = initial_setup(new_puzzle)
+  possibly_bad_puzzle = initial_setup(new_puzzle)
 
 
   generate_puzzle(new_puzzle, :box2)
@@ -111,13 +113,15 @@ amount.times do
 end
 puts
 
-@saved_puzzles.each do |puzzle|
-  print_final_puzzle(puzzle)
+@failed_puzzles.each do |puzzle|
+  p puzzle
 end
 
-# @failed_puzzles.each do |puzzle|
-#   p puzzle
+# @saved_puzzles.each do |puzzle|
+#   print_final_puzzle(puzzle)
 # end
+
+ 
 puts
 
 p "There were #{@valid_total} valid puzzles generated out of #{amount}!"

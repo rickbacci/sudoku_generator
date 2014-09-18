@@ -19,19 +19,23 @@ def solve_for_twos(array, rows, columns, location, section)
               if section == :box2
                 if (0..2).include?(row) && (6..8).include?(column)
                   if temp_array.count(element) == 2
-                    r = temp_location[index][0]
-                    c = temp_location[index][1]
-                    array[r][c] = [element[0]] 
-                    #@loop_again = 0 #### do i need?
-                    @history << "solve #{section} [#{r}][#{c}] set from #{element} to" + 
-                                " #{[element[0]]} (matching pair) from #{location}"
-                    @loop_once = 1
-                    clear_all(array)
-                    return
+                    # r = temp_location[index][0]
+                    # c = temp_location[index][1]
+                    # #array[r][c] = [element[0]] 
+                    # array[r][c] = [number]
+
+                    # #@loop_again = 0 #### do i need?
+                    # @history << "solve #{section} [#{r}][#{c}] set from #{element} to" + 
+                    #             " #{[element[0]]} (matching pair) from #{location}"
+                    # @loop_once = 1
+                    # clear_all(array)
+                    # return
                   else
                     r = temp_location[index][0]
                     c = temp_location[index][1]
+
                     array[r][c] = [element[0]] #if @loop_again == 1
+                    array[r][c] = [number]
                     #@loop_again = 0
                     @history << "solve #{section} [#{r}][#{c}] set from #{element}" + 
                                 " to #{[element[0]]} in solve_for_two #{location}"
@@ -44,7 +48,8 @@ def solve_for_twos(array, rows, columns, location, section)
                 if temp_array.count(element) == 2
                   r = temp_location[index][0]
                   c = temp_location[index][1]
-                  array[r][c] = [element[0]]
+                  #array[r][c] = [element[0]]
+                   array[r][c] = [number]
                   @history << " GUESS ********** puzzle[#{r}][#{c}] set from " +
                               "#{element} to #{[element[0]]} (matching pair) from #{location}"
                   @loop_once = 1
@@ -53,7 +58,8 @@ def solve_for_twos(array, rows, columns, location, section)
                 else
                   r = temp_location[index][0]
                   c = temp_location[index][1]
-                  array[r][c] = [element[0]] #if @loop_again == 1
+                  #array[r][c] = [element[0]] #if @loop_again == 1
+                   array[r][c] = [number]
                   #@loop_again = 0
                   @history << " GUESS ********** puzzle[#{r}][#{c}] set from" +
                               " #{element} to #{[element[0]]} in solve_for_two #{location}"
