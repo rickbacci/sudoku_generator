@@ -8,7 +8,7 @@ def box1(new_puzzle)
 end
 
 def box2(new_puzzle)
-  new_puzzle[0][6..8] + new_puzzle[1][6..8] + new_puzzle[2][6..8]
+  @box2 = new_puzzle[0][6..8] + new_puzzle[1][6..8] + new_puzzle[2][6..8]
 end
 
 def box3(new_puzzle)

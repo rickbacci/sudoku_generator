@@ -26,6 +26,7 @@ require_relative 'solve_for_pairs'
 
 
 new_puzzle = starting_matrix
+@pairs = []
 
 def initial_setup(new_puzzle)
   set_boxes(new_puzzle)
@@ -44,19 +45,18 @@ def generate_puzzle(array, section = nil)
   set_variables(array)
   clear_all(array)
   
-   total_numbers_remaining?(array)
+  total_numbers_remaining?(array)
   check_sizes(array)
   
   @loop_once = 0
-  #@loop_again = 0
 
   if (@size1 > 0) || @number_totals_remaining.include?(1)
     solve_for_one(array, section)
   elsif @size2 > 0
-    solve_for_pair(array, section)
     solve_for_two(array, section)
-  elsif @size3 > 0 
+  elsif @size3 > 0
     solve_for_three(array, section)
+  else
     solve_for_four(array, section)
   end
   
@@ -90,13 +90,10 @@ amount = 10
 amount.times do
   new_puzzle = starting_matrix
   
-  #initial_setup(new_puzzle)
-
   possibly_bad_puzzle = initial_setup(new_puzzle)
 
+  generate_puzzle(new_puzzle)
 
-  generate_puzzle(new_puzzle, :box2)
-  
   print_history
   p valid_puzzle?(new_puzzle)
   print_final_puzzle(new_puzzle)
@@ -128,6 +125,10 @@ p "There were #{@valid_total} valid puzzles generated out of #{amount}!"
 puts
 puts "Success rate: #{(@valid_total.to_f / amount) * 100} percent"
 
+
+
+
+## array of pairs? some way to see if they will fail?
 ############ send number array thru 1 at a time from main
 ###### need to loop thru numbers by fewest to most remaining...
 ### if section !nil then get ranges of section.

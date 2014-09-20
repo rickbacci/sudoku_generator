@@ -1,80 +1,79 @@
+def box_finished?(box)
+  box == box.flatten
+end
+
+
 
 def solve_for_twos(array, rows, columns, location, section)
   clear_all(array)
-  @loop_once = 0
+  #p @loop_once
 
   total_numbers_remaining?(array).each do |number|
     rows.each do |row|
       temp_array = []
       temp_location = []
+
       columns.each do |column|
-        element = array[row][column]
+        #if rows.include?(row) && columns.include?(column)
 
-        temp_location << [row, column]
-        temp_array << element
+          element = array[row][column]
+          temp_location << [row, column]
+          temp_array << element
 
-        if (temp_array.size % 9) == 0
-          temp_array.each_with_index do |element, index|
-          if (element.size == 2) && ((@loop_once == 0) && element.include?(number)) 
-              if section == :box2
-                if (0..2).include?(row) && (6..8).include?(column)
-                  if temp_array.count(element) == 2
-                    # r = temp_location[index][0]
-                    # c = temp_location[index][1]
-                    # #array[r][c] = [element[0]] 
-                    # array[r][c] = [number]
+          if (temp_array.size % 9) == 0
+            temp_array.each_with_index do |element, index|
+              if ((element.size == 2) && element.include?(number)) && (@loop_once == 0)
+                if temp_array.count(element) == 2
+                  #p temp_location
 
-                    # #@loop_again = 0 #### do i need?
-                    # @history << "solve #{section} [#{r}][#{c}] set from #{element} to" + 
-                    #             " #{[element[0]]} (matching pair) from #{location}"
-                    # @loop_once = 1
-                    # clear_all(array)
-                    # return
-                  else
+
+                  pair = element
+                  r = temp_location[index][0]
+                  c = temp_location[index][1]
+
+                  new_value = pair[0]
+                  array[r][c] = new_value
+
+                  temp_array.each_with_index do |arr, index|
+                    unless arr.is_a?(Integer)
+                      unless arr == element
+                        r = temp_location[index][0]
+                        c = temp_location[index][1]
+                       array[r][c] -= pair
+                      end
+                    end
+                  end
+                  save_history(location, row, column, element, new_value, :solve_for__pair, :matching_pair)
+
+                  @loop_once = 1
+                  clear_all(array)
+                  return
+
+                else
+
+                  #if box_finished?(@box2)
+
+                    #p "row: #{row} col: #{column}"
+
                     r = temp_location[index][0]
                     c = temp_location[index][1]
-
-                    array[r][c] = [element[0]] #if @loop_again == 1
-                    array[r][c] = [number]
-                    #@loop_again = 0
-                    @history << "solve #{section} [#{r}][#{c}] set from #{element}" + 
-                                " to #{[element[0]]} in solve_for_two #{location}"
-                    clear_all(array)
+                    new_value = number
+                    array[r][c] = new_value 
+                    save_history(location, row, column, element, new_value, :solve_for_two__, "*** guess ***")
                     @loop_once = 1
+                    clear_all(array)
                     return
-                  end
+
+                  # end
+
                 end
-              #else
-                if temp_array.count(element) == 2
-                  r = temp_location[index][0]
-                  c = temp_location[index][1]
-                  #array[r][c] = [element[0]]
-                   array[r][c] = [number]
-                  @history << " GUESS ********** puzzle[#{r}][#{c}] set from " +
-                              "#{element} to #{[element[0]]} (matching pair) from #{location}"
-                  @loop_once = 1
-                  clear_all(array)
-                  return
-                else
-                  r = temp_location[index][0]
-                  c = temp_location[index][1]
-                  #array[r][c] = [element[0]] #if @loop_again == 1
-                   array[r][c] = [number]
-                  #@loop_again = 0
-                  @history << " GUESS ********** puzzle[#{r}][#{c}] set from" +
-                              " #{element} to #{[element[0]]} in solve_for_two #{location}"
-                  clear_all(array)
-                  @loop_once = 1
-                  return
-                end
-              end # end box2
+              end
             end
           end
-          temp_array = []
-          temp_location = []
-        end
+        #end
       end
+      temp_array = []
+      temp_location = [] 
     end
   end
 end
-
