@@ -1,8 +1,10 @@
 
 
 def save_history(location, row, column, element, new_value, method, reason)
-  @history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- set from #{element} to " +
-              "#{new_value}"
+
+  @history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " + 
+  "Box2 finished? #{box_finished?(@box2)} --- set from #{element} to #{new_value}"
+  @box2finished += 1 if box_finished?(@box2) == false
 end
 
 def solve_for_fours(arrays, rows, columns, location, section)

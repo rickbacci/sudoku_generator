@@ -1,7 +1,6 @@
 
 def solve_for_threes(arrays, rows, columns, location, section)
   clear_all(arrays)
-  #p @loop_once
 
   total_numbers_remaining?(arrays).each do |number|
     arrays.each_with_index do |array, row|

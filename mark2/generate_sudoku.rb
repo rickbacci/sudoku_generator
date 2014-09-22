@@ -27,6 +27,7 @@ require_relative 'solve_for_pairs'
 
 new_puzzle = starting_matrix
 @pairs = []
+@box2finished = 0
 
 def initial_setup(new_puzzle)
   set_boxes(new_puzzle)
@@ -49,7 +50,7 @@ def generate_puzzle(array, section = nil)
   check_sizes(array)
   
   @loop_once = 0
-
+ 
   if (@size1 > 0) || @number_totals_remaining.include?(1)
     solve_for_one(array, section)
   elsif @size2 > 0
@@ -65,11 +66,18 @@ def generate_puzzle(array, section = nil)
 
   if @loops == 75
     p "puzzle stopped after #{@loops} recursions"
+    p "box2 not finished for #{@box2finished} loops"
+
+    @box2finished = 0
     puts
     array
     return
   elsif done == 405 && no_arrays?(array)
     p "puzzle solved after #{@loops} recursions"
+    p "box2 not finished for #{@box2finished} loops"
+    p @pairs
+    @pairs = []
+    @box2finished = 0
     puts
     return
   else
@@ -85,7 +93,7 @@ end
 possibly_bad_puzzle = []
 
 
-amount = 10
+amount = 5
 
 amount.times do
   new_puzzle = starting_matrix

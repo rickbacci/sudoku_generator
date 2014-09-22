@@ -10,7 +10,6 @@ end
 
 def solve_for_ones(array, rows, columns, location, section)
  clear_all(array)
-  #p @loop_once
 
   flat_array = build_flat_array(array, rows, columns)
 

@@ -1,12 +1,14 @@
 def box_finished?(box)
-  box == box.flatten
+  if box == box.flatten
+    return true
+  else  
+    return false
+  end
 end
-
 
 
 def solve_for_twos(array, rows, columns, location, section)
   clear_all(array)
-  #p @loop_once
 
   total_numbers_remaining?(array).each do |number|
     rows.each do |row|
@@ -24,8 +26,6 @@ def solve_for_twos(array, rows, columns, location, section)
             temp_array.each_with_index do |element, index|
               if ((element.size == 2) && element.include?(number)) && (@loop_once == 0)
                 if temp_array.count(element) == 2
-                  #p temp_location
-
 
                   pair = element
                   r = temp_location[index][0]
@@ -33,12 +33,17 @@ def solve_for_twos(array, rows, columns, location, section)
 
                   new_value = pair[0]
                   array[r][c] = new_value
+                  #@pairs << [[r,c],element]
 
                   temp_array.each_with_index do |arr, index|
                     unless arr.is_a?(Integer)
-                      unless arr == element
-                        r = temp_location[index][0]
-                        c = temp_location[index][1]
+                      r = temp_location[index][0]
+                      c = temp_location[index][1]
+                      if arr == element
+                        @pairs << [[r,c],element] if arr == element
+                      else
+                        # r = temp_location[index][0]
+                        # c = temp_location[index][1]
                        array[r][c] -= pair
                       end
                     end
@@ -50,22 +55,14 @@ def solve_for_twos(array, rows, columns, location, section)
                   return
 
                 else
-
-                  #if box_finished?(@box2)
-
-                    #p "row: #{row} col: #{column}"
-
-                    r = temp_location[index][0]
-                    c = temp_location[index][1]
-                    new_value = number
-                    array[r][c] = new_value 
-                    save_history(location, row, column, element, new_value, :solve_for_two__, "*** guess ***")
-                    @loop_once = 1
-                    clear_all(array)
-                    return
-
-                  # end
-
+                  r = temp_location[index][0]
+                  c = temp_location[index][1]
+                  new_value = number
+                  array[r][c] = new_value 
+                  save_history(location, row, column, element, new_value, :solve_for_two__, "*** guess ***")
+                  @loop_once = 1
+                  clear_all(array)
+                  return
                 end
               end
             end
