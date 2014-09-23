@@ -10,7 +10,7 @@ def valid_puzzle?(array)
   end
 
   if total == 405
-    return "Valid puzzle with a total of #{total}!"
+    return  "Valid puzzle with a total of #{total}!"
   else
     return "Invalid puzzle! with a total of #{total}!"
   end

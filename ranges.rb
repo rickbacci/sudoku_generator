@@ -19,11 +19,6 @@ end
 
 def solve_for_columns(array, bar, section)
 
-  # if box_finished?(@box2) == false
-  #   send(bar, array, (0..8), [6], :col6, section)
-  #   send(bar, array, (0..8), [7], :col7, section)
-  #   send(bar, array, (0..8), [8], :col8, section)
-  # else
     send(bar, array, (0..8), [0], :col0, section)
     send(bar, array, (0..8), [1], :col1, section)
     send(bar, array, (0..8), [2], :col2, section)
@@ -35,7 +30,6 @@ def solve_for_columns(array, bar, section)
     send(bar, array, (0..8), [6], :col6, section)
     send(bar, array, (0..8), [7], :col7, section)
     send(bar, array, (0..8), [8], :col8, section)
- #end
 end
 
 def solve_for_boxes(array, baz, section)
@@ -43,6 +37,9 @@ def solve_for_boxes(array, baz, section)
   if box_finished?(@box2) == false
     send(baz, array, (0..2), (6..8), :box2, section)
   else
+    send(baz, array, (3..5), (6..8), :box5, section)
+    send(baz, array, (0..2), (3..5), :box1, section)
+
     send(baz, array, (0..2), (0..2), :box0, section)
     send(baz, array, (0..2), (3..5), :box1, section)
     send(baz, array, (0..2), (6..8), :box2, section)

@@ -21,13 +21,15 @@ def initial_setup(new_puzzle)
   set_boxes(new_puzzle)
   clear_all(new_puzzle)
   set_variables(new_puzzle)
-  print_initial_puzzle(new_puzzle)
+  #print_initial_puzzle(new_puzzle)
   @history = []
   @loops = 0
   @pairs = []
   @box2finished = 0
+  @other_path = 0
   new_puzzle
 end
+
 
 
 def generate_puzzle(array, section = nil)
@@ -53,19 +55,17 @@ def generate_puzzle(array, section = nil)
   done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops == 75
-    p "puzzle stopped after #{@loops} recursions"
-    p "box2 not finished for #{@box2finished} loops"
-    p @pairs
-    @pairs = []
-    @box2finished = 0
-    puts
-    array
+  if @loops == 40
+    @loops = 0
+
+    @new_puzzle = starting_matrix
+    initial_setup(@new_puzzle)
+    generate_puzzle(@new_puzzle)
     return
+  
   elsif done == 405 && no_arrays?(array)
-    p "puzzle solved after #{@loops} recursions"
-    p "box2 not finished for #{@box2finished} loops"
-    p @pairs
+    @history << "box2 not finished for #{@box2finished} loops"
+    @history << "puzzle solved after #{@loops} recursions"
     @pairs = []
     @box2finished = 0
     puts
@@ -82,34 +82,38 @@ end
 @valid_total = 0
 @failed_total = 0
 
-amount = 5
+
+amount = 100
 
 amount.times do
-  new_puzzle = starting_matrix
-  
-  possibly_bad_puzzle = initial_setup(new_puzzle)
 
-  generate_puzzle(new_puzzle)
+  @new_puzzle = starting_matrix
+  
+  possibly_bad_puzzle = initial_setup(@new_puzzle)
+
+  generate_puzzle(@new_puzzle)
+
+  @history << valid_puzzle?(@new_puzzle)
 
   print_history
-  p valid_puzzle?(new_puzzle)
-  print_final_puzzle(new_puzzle)
+  print_final_puzzle(@new_puzzle)
 
-  if !valid_puzzle?(new_puzzle) || !no_arrays?(new_puzzle)
+  if !valid_puzzle?(@new_puzzle) || !no_arrays?(@new_puzzle)
     @failed_total += 1
     @failed_puzzles << possibly_bad_puzzle
+    
   end
 
-  if  valid_puzzle?(new_puzzle) && no_arrays?(new_puzzle)
+  if  valid_puzzle?(@new_puzzle) && no_arrays?(@new_puzzle)
     @valid_total += 1
-    @saved_puzzles << new_puzzle
+    @saved_puzzles << @new_puzzle
   end
 end
 puts
 
-@failed_puzzles.each do |puzzle|
-  p puzzle
-end
+# @failed_puzzles.each do |puzzle|
+#   p puzzle
+# end
 
 # @saved_puzzles.each do |puzzle|
 #   print_final_puzzle(puzzle)
