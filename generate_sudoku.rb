@@ -16,7 +16,6 @@ require_relative 'validation'
 require_relative 'puzzle/print_puzzle'
 require_relative 'solve_for'
 
-new_puzzle = starting_matrix
 
 def initial_setup(new_puzzle)
   set_boxes(new_puzzle)
@@ -27,9 +26,6 @@ def initial_setup(new_puzzle)
   @loops = 0
   @pairs = []
   @box2finished = 0
-
-  
-
   new_puzzle
 end
 
