@@ -1,6 +1,6 @@
 
 def box0(new_puzzle)
-  @box0 = new_puzzle[0][0..2] + new_puzzle[1][0..2] + new_puzzle[2][0..2]
+  new_puzzle[0][0..2] + new_puzzle[1][0..2] + new_puzzle[2][0..2]
 end
 
 def box1(new_puzzle)

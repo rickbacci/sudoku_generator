@@ -22,6 +22,16 @@ def no_arrays?(array)
         return false if element.is_a? Array
       end
     end
+  return true
+end
+
+def box_finished?(box)
+  if box == box.flatten
     return true
+  else  
+    return false
   end
+end
+
+
   

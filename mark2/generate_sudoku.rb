@@ -20,9 +20,7 @@ require_relative 'solve_for_three'
 require_relative 'solve_for_four'
 require_relative 'validation'
 require_relative 'print_puzzle'
-require_relative 'solve_box2'
 require_relative 'solve_for'
-require_relative 'solve_for_pairs'
 
 
 new_puzzle = starting_matrix
@@ -67,7 +65,8 @@ def generate_puzzle(array, section = nil)
   if @loops == 75
     p "puzzle stopped after #{@loops} recursions"
     p "box2 not finished for #{@box2finished} loops"
-
+    p @pairs
+    @pairs = []
     @box2finished = 0
     puts
     array
@@ -134,8 +133,8 @@ puts
 puts "Success rate: #{(@valid_total.to_f / amount) * 100} percent"
 
 
-
-
+##  ?? return in solve_for until box2 is complete ??
+### remember array when setting pairs...if puzzle fails, start over using other number.
 ## array of pairs? some way to see if they will fail?
 ############ send number array thru 1 at a time from main
 ###### need to loop thru numbers by fewest to most remaining...

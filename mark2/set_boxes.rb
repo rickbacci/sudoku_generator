@@ -1,6 +1,4 @@
 
-
-
 def set_boxes(new_puzzle)
   set_box(new_puzzle, (0..2), (0..2))
   set_box(new_puzzle, (3..5), (3..5))

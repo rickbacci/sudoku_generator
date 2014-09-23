@@ -2,7 +2,6 @@
 def print_final_puzzle(array)
     array.each_with_index do |row, row_num|
       row.each_with_index do |element, col_num|
-      #array[row_num][col_num] = " " if element.is_a? Array
       end
     end
 
@@ -28,4 +27,11 @@ end
 def print_history
   @history.each { |h| p h } 
   puts
+end
+
+def save_history(location, row, column, element, new_value, method, reason)
+
+  @history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " + 
+  "Box2 finished? #{box_finished?(@box2)} --- set from #{element} to #{new_value}"
+  @box2finished += 1 if box_finished?(@box2) == false
 end
