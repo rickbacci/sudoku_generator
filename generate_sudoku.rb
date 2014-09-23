@@ -1,31 +1,22 @@
-require_relative 'starting_matrix'
-
-require_relative 'set_boxes'
-
-require_relative 'puzzle_boxes'
-require_relative 'puzzle_columns'
-require_relative 'puzzle_rows'
-require_relative 'set_variables'
-
+require_relative 'puzzle/starting_matrix'
+require_relative 'puzzle/set_boxes'
+require_relative 'puzzle/puzzle_boxes'
+require_relative 'puzzle/puzzle_columns'
+require_relative 'puzzle/puzzle_rows'
+require_relative 'puzzle/set_variables'
 require_relative 'clear_all'
-
 require_relative 'check_sizes'
 require_relative 'total_numbers_remaining'
-
+require_relative 'ranges'
 require_relative 'solve_for_one'
 require_relative 'solve_for_two'
-require_relative 'ranges'
-
 require_relative 'solve_for_three'
 require_relative 'solve_for_four'
 require_relative 'validation'
-require_relative 'print_puzzle'
+require_relative 'puzzle/print_puzzle'
 require_relative 'solve_for'
 
-
 new_puzzle = starting_matrix
-@pairs = []
-@box2finished = 0
 
 def initial_setup(new_puzzle)
   set_boxes(new_puzzle)
@@ -34,10 +25,14 @@ def initial_setup(new_puzzle)
   print_initial_puzzle(new_puzzle)
   @history = []
   @loops = 0
+  @pairs = []
+  @box2finished = 0
+
+  
+
   new_puzzle
 end
 
-#initial_setup(new_puzzle)
 
 def generate_puzzle(array, section = nil)
   
@@ -85,12 +80,11 @@ def generate_puzzle(array, section = nil)
   end
 end
 
+
 @saved_puzzles = []
 @failed_puzzles = []
 @valid_total = 0
 @failed_total = 0
-possibly_bad_puzzle = []
-
 
 amount = 5
 
