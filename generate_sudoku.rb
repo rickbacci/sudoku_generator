@@ -83,7 +83,8 @@ end
 @failed_total = 0
 
 
-amount = 100
+
+amount = 10
 
 amount.times do
 
@@ -125,17 +126,4 @@ puts
 p "There were #{@valid_total} valid puzzles generated out of #{amount}!"
 puts
 puts "Success rate: #{(@valid_total.to_f / amount) * 100} percent"
-
-
-##  ?? return in solve_for until box2 is complete ??
-### remember array when setting pairs...if puzzle fails, start over using other number.
-## array of pairs? some way to see if they will fail?
-############ send number array thru 1 at a time from main
-###### need to loop thru numbers by fewest to most remaining...
-### if section !nil then get ranges of section.
-####### THIS NEEDS TO LOOP THRU EVERYTHING LIKE THE ONE'S DOES AND CHECK FOR MATCHING PAIRS!!!
-### or look for matches across rows, columns, or boxes for size 2 arrays"
-###
-### place number with least possibilities remaining
-### either loop thru array and finish block by block
 

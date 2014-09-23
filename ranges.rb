@@ -1,11 +1,9 @@
 
 def solve_for_rows(array, foo, section)
-
-  #if box_finished?(@box2) == false
     send(foo, array, ([0]), (0..8), :row0, section)
     send(foo, array, ([1]), (0..8), :row1, section)
     send(foo, array, ([2]), (0..8), :row2, section)
-  #else
+
     send(foo, array, ([3]), (0..8), :row3, section)
     send(foo, array, ([4]), (0..8), :row4, section)
     send(foo, array, ([5]), (0..8), :row5, section)
@@ -13,12 +11,10 @@ def solve_for_rows(array, foo, section)
     send(foo, array, ([6]), (0..8), :row6, section)
     send(foo, array, ([7]), (0..8), :row7, section)
     send(foo, array, ([8]), (0..8), :row8, section)
-  #end
 end
 
 
 def solve_for_columns(array, bar, section)
-
     send(bar, array, (0..8), [0], :col0, section)
     send(bar, array, (0..8), [1], :col1, section)
     send(bar, array, (0..8), [2], :col2, section)
