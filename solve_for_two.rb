@@ -36,7 +36,7 @@ def solve_for_twos(array, rows, columns, location, section)
                   r = temp_location[index][0]
                   c = temp_location[index][1]
                   if arr == element
-                    @pairs << {[r,c] => element} if arr == element
+                    @pairs << {[r,c] => element} #if arr == element
                   else
                    array[r][c] -= pair
                   end
@@ -54,9 +54,9 @@ def solve_for_twos(array, rows, columns, location, section)
 
               new_value = element[0]
               alt_value = element[1]
+              #new_value = element[rand(0..1)]
 
               if @other_path == 0
-
                 array[r][c] = new_value
               else
                 array[r][c] = alt_value

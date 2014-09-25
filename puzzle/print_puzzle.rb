@@ -32,6 +32,7 @@ end
 def save_history(location, row, column, element, new_value, method, reason)
 
   @history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " + 
-  "Box2 finished? #{box_finished?(@box2)} --- set from #{element} to #{new_value}"
-  @box2finished += 1 if box_finished?(@box2) == false
+  " set from #{element} to #{new_value}"
+  #{}"Box2 finished? #{box_finished?(@box2)} --- set from #{element} to #{new_value}"
+  #@box2finished += 1 if box_finished?(@box2) == false
 end
