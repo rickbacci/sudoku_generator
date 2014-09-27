@@ -18,10 +18,10 @@ require_relative 'solve_for'
 
 
 def initial_setup(new_puzzle)
-  #set_boxes(new_puzzle)
+  set_boxes(new_puzzle)
   clear_all(new_puzzle)
   set_variables(new_puzzle)
-  print_initial_puzzle(new_puzzle)
+  #print_initial_puzzle(new_puzzle)
   @history = []
   @loops = 0
   @pairs = []
@@ -58,9 +58,9 @@ def generate_puzzle(array, section = nil)
   if @loops == 75
     @loops = 0
 
-     # @new_puzzle = starting_matrix
-     # initial_setup(@new_puzzle)
-     # generate_puzzle(@new_puzzle)
+     @new_puzzle = starting_matrix
+     initial_setup(@new_puzzle)
+     generate_puzzle(@new_puzzle)
     return
   
   elsif done == 405 && no_arrays?(array)
@@ -84,7 +84,7 @@ end
 
 
 
-amount = 1
+amount = 10
 
 amount.times do
 
